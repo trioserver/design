@@ -1,7 +1,4 @@
-design
-======
 
-Hello githubdfqfdqfqdfqd
 
 Try conflicts!!! We will get there!
 

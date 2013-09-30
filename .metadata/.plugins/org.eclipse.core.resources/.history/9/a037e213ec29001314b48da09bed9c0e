@@ -1,0 +1,6 @@
+package Design;
+
+
+public class Window4 implements Window {
+
+}

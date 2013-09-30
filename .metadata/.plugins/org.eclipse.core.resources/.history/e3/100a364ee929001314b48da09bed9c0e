@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package Design;
+
+import java.util.List;
+
+/**
+ * @author artur
+ *
+ */
+public class Window4Fact implements WindowFactory {
+
+	/* (non-Javadoc)
+	 * @see Design.WindowFactory#CreateWindow(java.util.List)
+	 */
+	@Override
+	public void CreateWindow(List imgList) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

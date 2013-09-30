@@ -1,0 +1,14 @@
+package Design;
+
+import java.util.List;
+
+
+public class Window1Fact implements WindowFactory {
+
+	@Override
+	public void CreateWindow(List imgList) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

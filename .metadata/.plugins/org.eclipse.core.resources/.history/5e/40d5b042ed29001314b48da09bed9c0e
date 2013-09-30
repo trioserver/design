@@ -1,0 +1,32 @@
+/**
+ * 
+ */
+package Design;
+
+import java.util.List;
+
+/** 
+ * @author artur
+ */
+public interface WindowFactory {
+
+		
+			
+	public abstract void CreateWindow(List imgList);
+
+	/**
+	 * @return  Returns the mainView.
+	 * @uml.property  name="mainView" default="new Design.MainView()"
+	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="shared" inverse="windowFactory:Design.MainView"
+	 */
+	public MainView getMainView();
+
+	/**
+	 * Setter of the property <tt>mainView</tt>
+	 * @param mainView  The mainView to set.
+	 * @uml.property  name="mainView"
+	 */
+	public void setMainView(MainView mainView);
+			
+	
+}

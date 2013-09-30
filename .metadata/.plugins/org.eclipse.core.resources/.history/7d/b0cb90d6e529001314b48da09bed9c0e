@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package Design;
+
+/**
+ * @author artur
+ *
+ */
+public interface WindowFactory {
+
+}

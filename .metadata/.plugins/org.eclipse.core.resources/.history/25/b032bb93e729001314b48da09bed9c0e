@@ -1,0 +1,27 @@
+/**
+ * 
+ */
+package Design;
+
+import java.util.List;
+import javax.imageio;
+
+
+/** 
+ * @author artur
+ */
+public interface WindowFactory {
+
+	/**
+	 * @return    Returns the _imgList.
+	 * @uml.property    name="_imgList" default="new java.util.List()"
+	 */
+	public List<BufferedImage> get_imgList();
+
+	/**
+	 * @return   Returns the _imgList.
+	 * @uml.property   name="_imgList" default="new java.util.List()"
+	 */
+	public List<BufferedImage> get_imgList();
+
+}

@@ -1,0 +1,30 @@
+package Design;
+
+
+
+public class MainController {
+
+	/**
+	 * @uml.property  name="MainView"
+	 */
+	private String mainView;
+
+	/**
+	 * Getter of the property <tt>MainView</tt>
+	 * @return  Returns the mainView.
+	 * @uml.property  name="MainView"
+	 */
+	public String getMainView() {
+		return mainView;
+	}
+
+	/**
+	 * Setter of the property <tt>MainView</tt>
+	 * @param MainView  The mainView to set.
+	 * @uml.property  name="MainView"
+	 */
+	public void setMainView(String mainView) {
+		this.mainView = mainView;
+	}
+
+}

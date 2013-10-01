@@ -1,0 +1,26 @@
+/**
+ * 
+ */
+package design;
+import javax.swing.SwingUtilities;
+/** 
+ * @author artur
+ */
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	MainView ex = new MainView();
+            	ex.setVisible();
+            }
+        });
+	}
+
+
+}

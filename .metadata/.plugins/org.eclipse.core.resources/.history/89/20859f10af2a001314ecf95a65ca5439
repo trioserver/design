@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package design;
+import javax.swing.SwingUtilities;
+/** 
+ * @author artur
+ */
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		_mainView = new design.MainView();
+	}
+
+
+}

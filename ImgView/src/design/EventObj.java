@@ -1,0 +1,9 @@
+package design;
+
+
+public interface EventObj {
+
+
+
+
+}

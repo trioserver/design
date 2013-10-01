@@ -1,0 +1,64 @@
+package design;
+
+import java.util.Collection;
+import java.util.Iterator;
+
+
+public class MainView {
+
+	/** 
+	 * @uml.property name="_mainController"
+	 */
+	private MainController _mainController = new design.MainController();
+
+	/** 
+	 * Getter of the property <tt>_mainController</tt>
+	 * @return  Returns the _mainController.
+	 * @uml.property  name="_mainController"
+	 */
+	public MainController get_mainController() {
+		return _mainController;
+	}
+
+	/** 
+	 * Setter of the property <tt>_mainController</tt>
+	 * @param _mainController  The _mainController to set.
+	 * @uml.property  name="_mainController"
+	 */
+	public void set_mainController(MainController _mainController) {
+		this._mainController = _mainController;
+	}
+
+	/**
+	 * @uml.property  name="mainController"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="mainView:design.MainController"
+	 */
+	private MainController mainController = new design.MainController();
+
+	/**
+	 * Getter of the property <tt>mainController</tt>
+	 * @return  Returns the mainController.
+	 * @uml.property  name="mainController"
+	 */
+	public MainController getMainController() {
+		return mainController;
+	}
+
+	/**
+	 * Setter of the property <tt>mainController</tt>
+	 * @param mainController  The mainController to set.
+	 * @uml.property  name="mainController"
+	 */
+	public void setMainController(MainController mainController) {
+		this.mainController = mainController;
+	}
+
+	/**
+	 * @uml.property  name="eventObj"
+	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="mainView:design.EventObj"
+	 */
+	private Collection eventObj;
+
+	
+
+}

@@ -1,0 +1,18 @@
+package design;
+
+
+public class Button implements EventObj {
+
+	@Override
+	public MainView get_mainView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void set_mainView(MainView _mainView) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

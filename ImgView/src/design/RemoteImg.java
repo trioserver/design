@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+package design;
+
+/** 
+ * @author artur
+ */
+public class RemoteImg implements LoadImg {
+
+}

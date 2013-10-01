@@ -1,0 +1,21 @@
+package design;
+
+
+public interface EventObj {
+
+	/**
+	 * @return  Returns the _mainView.
+	 * @uml.property  name="_mainView" default="new design.MainView()"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="_eventObj:design.MainView"
+	 */
+	public MainView get_mainView();
+
+	/**
+	 * Setter of the property <tt>_mainView</tt>
+	 * @param _mainView  The _mainView to set.
+	 * @uml.property  name="_mainView"
+	 */
+	public void set_mainView(MainView _mainView);
+
+
+}

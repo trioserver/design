@@ -1,0 +1,35 @@
+/**
+ * 
+ */
+package design;
+
+/** 
+ * @author artur
+ */
+public class Collection {
+
+	/**
+	 * @uml.property  name="_pathContainer"
+	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="shared" inverse="collection:design.PathContainer"
+	 */
+	private PathContainer _pathContainer = new design.PathContainer();
+
+	/**
+	 * Getter of the property <tt>_pathContainer</tt>
+	 * @return  Returns the _pathContainer.
+	 * @uml.property  name="_pathContainer"
+	 */
+	public PathContainer get_pathContainer() {
+		return _pathContainer;
+	}
+
+	/**
+	 * Setter of the property <tt>_pathContainer</tt>
+	 * @param _pathContainer  The _pathContainer to set.
+	 * @uml.property  name="_pathContainer"
+	 */
+	public void set_pathContainer(PathContainer _pathContainer) {
+		this._pathContainer = _pathContainer;
+	}
+
+}

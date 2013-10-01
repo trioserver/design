@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="true" key="EXT_FOLDER_LAST_SUBDIR_SETTING"/>
+	<item value="/media/artur/Documents/workspace/design/ImgView/src" key="EXT_FOLDER_LAST_PATH_SETTING"/>
+	<section name="org.eclipse.debug.ui.sourcelookup.SourceLookupDialog">
+		<item value="613" key="DIALOG_WIDTH"/>
+		<item value="132" key="DIALOG_Y_ORIGIN"/>
+		<item value="481" key="DIALOG_HEIGHT"/>
+		<item value="494" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Roboto|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.debug.ui.SCOPED_SAVE_SELECTION_DIALOG">
+		<item value="314" key="DIALOG_WIDTH"/>
+		<item value="412" key="DIALOG_HEIGHT"/>
+		<item value="1|Roboto|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.debug.ui.SELECT_LAUNCH_SHORTCUT_DIALOG">
+		<item value="289" key="DIALOG_WIDTH"/>
+		<item value="464" key="DIALOG_HEIGHT"/>
+		<item value="1|Roboto|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.jdt.debug.ui.PROJECT_SELECTION_DIALOG_SECTION">
+		<item value="329" key="DIALOG_WIDTH"/>
+		<item value="446" key="DIALOG_HEIGHT"/>
+		<item value="1|Roboto|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

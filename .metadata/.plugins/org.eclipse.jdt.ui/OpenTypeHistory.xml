@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=ImgView/src&lt;design{MainView.java[MainView" modifiers="1" timestamp="1380652702000"/>
+<typeInfo handle="=ImgView/src&lt;design{EventObj.java[EventObj" modifiers="513" timestamp="1380581009000"/>
+<typeInfo handle="=ImgView/\/usr\/lib\/jvm\/java-7-openjdk-i386\/jre\/lib\/rt.jar&lt;java.lang(Object.class[Object" modifiers="33" timestamp="1372860576000"/>
+<typeInfo handle="=ImgView/src&lt;design{WindowFactory.java[WindowFactory" modifiers="513" timestamp="1380581784000"/>
+<typeInfo handle="=ImgView/src&lt;design{Window.java[Window" modifiers="513" timestamp="1380582072000"/>
+<typeInfo handle="=ImgView/\/usr\/lib\/jvm\/java-7-openjdk-i386\/jre\/lib\/rt.jar&lt;java.util(Observer.class[Observer" modifiers="1537" timestamp="1372860576000"/>
+<typeInfo handle="=ImgView/src&lt;design{Dirs.java[Dirs" modifiers="513" timestamp="1380586815000"/>
+<typeInfo handle="=ImgView/\/usr\/lib\/jvm\/java-7-openjdk-i386\/jre\/lib\/rt.jar&lt;com.sun.org.apache.bcel.internal.generic(LoadClass.class[LoadClass" modifiers="1537" timestamp="1372860576000"/>
+<typeInfo handle="=ImgView/src&lt;design{LoadImg.java[LoadImg" modifiers="513" timestamp="1380587222000"/>
+<typeInfo handle="=ImgView/src&lt;design{Actions.java[Actions" modifiers="1025" timestamp="1380581164000"/>
+<typeInfo handle="=ImgView/src&lt;design{MainController.java[MainController" modifiers="1" timestamp="1380642363000"/>
+<typeInfo handle="=ImgView/src&lt;design{Session.java[Session" modifiers="1" timestamp="1380586280000"/>
+<typeInfo handle="=ImgView/src&lt;design{Collection.java[Collection" modifiers="1" timestamp="1380587471000"/>
+</typeInfoHistroy>

@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package design;
+
+import java.util.Observer;
+
+/**
+ * @author artur
+ *
+ */
+public abstract class Observer implements Observer {
+
+}

@@ -1,0 +1,35 @@
+/**
+ * 
+ */
+package design;
+
+/** 
+ * @author artur
+ */
+public class Session {
+
+	/**
+	 * @uml.property  name="collection"
+	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="composite" inverse="session:design.Collection"
+	 */
+	private Collection collection = new design.Collection();
+
+	/**
+	 * Getter of the property <tt>collection</tt>
+	 * @return  Returns the collection.
+	 * @uml.property  name="collection"
+	 */
+	public Collection getCollection() {
+		return collection;
+	}
+
+	/**
+	 * Setter of the property <tt>collection</tt>
+	 * @param collection  The collection to set.
+	 * @uml.property  name="collection"
+	 */
+	public void setCollection(Collection collection) {
+		this.collection = collection;
+	}
+
+}

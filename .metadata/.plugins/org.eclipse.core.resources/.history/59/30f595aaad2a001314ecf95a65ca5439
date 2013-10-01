@@ -1,0 +1,43 @@
+/**
+ * 
+ */
+package design;
+
+/** 
+ * @author artur
+ */
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * @uml.property  name="_mainView"
+	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="composite" inverse="main:design.MainView"
+	 */
+	private MainView _mainView;
+
+	/**
+	 * Getter of the property <tt>_mainView</tt>
+	 * @return  Returns the _mainView.
+	 * @uml.property  name="_mainView"
+	 */
+	public MainView get_mainView() {
+		return _mainView;
+	}
+
+	/**
+	 * Setter of the property <tt>_mainView</tt>
+	 * @param _mainView  The _mainView to set.
+	 * @uml.property  name="_mainView"
+	 */
+	public void set_mainView(MainView _mainView) {
+		this._mainView = _mainView;
+	}
+
+}

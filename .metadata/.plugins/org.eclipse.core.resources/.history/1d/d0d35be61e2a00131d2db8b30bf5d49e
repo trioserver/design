@@ -1,0 +1,29 @@
+package design;
+
+
+public class MainView {
+
+	/**
+	 * @uml.property  name="_mainController"
+	 */
+	private MainController _mainController = new design.MainController();
+
+	/**
+	 * Getter of the property <tt>_mainController</tt>
+	 * @return  Returns the _mainController.
+	 * @uml.property  name="_mainController"
+	 */
+	public MainController get_mainController() {
+		return _mainController;
+	}
+
+	/**
+	 * Setter of the property <tt>_mainController</tt>
+	 * @param _mainController  The _mainController to set.
+	 * @uml.property  name="_mainController"
+	 */
+	public void set_mainController(MainController _mainController) {
+		this._mainController = _mainController;
+	}
+
+}

@@ -1,0 +1,32 @@
+package design;
+
+
+public class MainController {
+
+	/**
+	 * @uml.property  name="_mainView"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="_mainController:design.MainView"
+	 */
+	private MainView _mainView = new design.MainView();
+
+	/**
+	 * Getter of the property <tt>_mainView</tt>
+	 * @return  Returns the _mainView.
+	 * @uml.property  name="_mainView"
+	 */
+	public MainView get_mainView() {
+		return _mainView;
+	}
+
+	/**
+	 * Setter of the property <tt>_mainView</tt>
+	 * @param _mainView  The _mainView to set.
+	 * @uml.property  name="_mainView"
+	 */
+	public void set_mainView(MainView _mainView) {
+		this._mainView = _mainView;
+	}
+
+
+
+}

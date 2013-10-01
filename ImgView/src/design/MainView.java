@@ -78,12 +78,11 @@ public class MainView extends JFrame implements Observer{
         JPanel stateContainer=new JPanel();
         stateContainer.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         stateContainer.setLayout(new BoxLayout(stateContainer,BoxLayout.X_AXIS));
-        JButton stateOne= new JButton();
-        
-            ImageIcon iconOne = new ImageIcon(getClass().getResource("images/stateOne.png"));
-            stateOne.setIcon(iconOne);
-            stateOne.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-            stateContainer.add(stateOne);
+        JButton stateOne= new JButton("One");
+        //ImageIcon iconOne = new ImageIcon(getClass().getResource("images/stateOne.png"));
+        //stateOne.setIcon(iconOne);
+        stateOne.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        stateContainer.add(stateOne);
           
         
         

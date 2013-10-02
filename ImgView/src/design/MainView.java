@@ -14,8 +14,10 @@ import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -35,8 +37,31 @@ public class MainView extends JFrame implements Observer{
 	//int Width=800;
 	//int Heigth=600;
 	
+	private JComponent _fileOpen;
+	private JComponent _fileExit;
+	private JComponent _btnPrev;
+	private JComponent _btnNext;
+	private JComponent _btnOne;
+	private JComponent _btnFour;
+	
+	private Actions _next;
+	
+	/**
+	 * @uml.property  name="_imgWindow"
+	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="composite" inverse="mainView:design.WindowFactory"
+	 */
+	private WindowFactory _imgWindow;
+
+	/**
+	 * @uml.property  name="_mainController"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="_mainView:design.MainController"
+	 */
+	private MainController _mainController = new design.MainController();
+	
+		
 	public MainView()
 	{
+		_next = new DoNext();
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("/media/artur/Documents/foto/2008-09-03/Picture 009.jpg"));
@@ -44,7 +69,7 @@ public class MainView extends JFrame implements Observer{
 		ArrayList<BufferedImage> list =new ArrayList<BufferedImage>();
 		list.add(myPicture);
 		_imgWindow = new Win1Fact(list);
-		
+		JLabel window = _imgWindow.getWindow();
 		//setResizable(false);
 		setTitle("Medical Image Viewing Console");
 		setSize(800, 600);
@@ -63,11 +88,145 @@ public class MainView extends JFrame implements Observer{
 	    JMenu file=new JMenu("File");
 	    file.setMnemonic(KeyEvent.VK_F);
 	    
-	    JMenuItem fileOpen= new JMenuItem("Open");
-	    fileOpen.setMnemonic(KeyEvent.VK_O);
-        fileOpen.setToolTipText("Open new study");
-        fileOpen.addActionListener(new ActionListener(){
+	    fileOpenInit();
+	    fileExitInit();
         
+        file.add(_fileOpen);	
+        file.add(_fileExit);
+        menubar.add(file);
+        setJMenuBar(menubar);
+        
+        ///////////////////////////////Next, Prev, Image Container/////////////////////////////////////:
+        
+        //Previous
+        JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.WEST);
+		
+		initbtnPrev();
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(_btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(99)
+					.addComponent(_btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(98))
+		);
+		panel.setLayout(gl_panel);
+		
+		//Next
+		JPanel panel_4 = new JPanel();
+		getContentPane().add(panel_4, BorderLayout.EAST);
+		
+		initbtnNext();
+		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
+		gl_panel_4.setHorizontalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addComponent(_btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panel_4.setVerticalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addGap(102)
+					.addComponent(_btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(95))
+		);
+		panel_4.setLayout(gl_panel_4);
+		
+		//Image Container
+		JPanel panel_1 = new JPanel();
+		getContentPane().add(panel_1, BorderLayout.CENTER);
+		panel_1.add(window);
+		
+		
+		////////////////////////////////State Buttons/////////////////////////////////
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(null);
+		getContentPane().add(panel_3, BorderLayout.SOUTH);
+		
+		initbtnOne();
+		initbtnFour();
+		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		panel_3.add(_btnOne);
+		panel_3.add(_btnFour);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	/**
+	 * Initiate the OneState button 
+	 * 
+	 */
+	private void initbtnOne(){
+		_btnOne = new JButton("One");
+		((JButton)_btnOne).setVerticalAlignment(SwingConstants.BOTTOM);
+		((JButton)_btnOne).setHorizontalAlignment(SwingConstants.LEFT);
+        evActionbtnOne();
+	}
+	private void evActionbtnOne(){
+		
+	}
+	/**
+	 * Initiate the FourState button 
+	 * 
+	 */
+	private void initbtnFour(){
+		_btnFour = new JButton("Four");
+		((JButton)_btnFour).setVerticalAlignment(SwingConstants.BOTTOM);
+		((JButton)_btnFour).setHorizontalAlignment(SwingConstants.LEFT);
+        evActionbtnFour();
+	}
+	private void evActionbtnFour(){
+		
+	}
+	/**
+	 * Initiate the Previous button item
+	 * 
+	 */
+	private void initbtnPrev(){
+		_btnPrev = new JButton("Next");
+        evActionbtnPrev();
+	}
+	private void evActionbtnPrev(){
+		
+	}
+	/**
+	 * Initiate the Next button item
+	 * 
+	 */
+	private void initbtnNext(){
+		_btnNext = new JButton("Next");
+        evActionbtnNext();
+	}
+	private void evActionbtnNext(){
+		_next.initAction();
+	}
+	
+	/**
+	 * Initiate the _fileOpen menu item
+	 * 
+	 */
+	private void fileOpenInit(){
+		_fileOpen= new JMenuItem("Open");
+	    ((JMenuItem)_fileOpen).setMnemonic(KeyEvent.VK_O);
+        _fileOpen.setToolTipText("Open new study");
+        evActionFileOpen();
+	}
+	/**
+	 * Set default action for fileOpen item
+	 * Overriding actionPerformed method
+	 * 
+	 */
+	private void evActionFileOpen()
+	{
+		((JMenuItem)_fileOpen).addActionListener(new ActionListener(){
+	        
         	@Override
         	public void actionPerformed(ActionEvent arg0){
         		JFileChooser fileChooser = new JFileChooser();
@@ -79,118 +238,22 @@ public class MainView extends JFrame implements Observer{
         		}
         	}
         });
-        
-	    JMenuItem fileExit = new JMenuItem("Exit");
-	    fileExit.setMnemonic(KeyEvent.VK_E);
-        fileExit.setToolTipText("Exit application");
-        fileExit.addActionListener(new ActionListener() {
+	}
+	/**
+	 * Initiate the _fileExit menu item
+	 * 
+	 */
+	private void fileExitInit(){
+		_fileExit = new JMenuItem("Exit");
+		((JMenuItem)_fileExit).setMnemonic(KeyEvent.VK_E);
+        _fileExit.setToolTipText("Exit application");
+        ((JMenuItem)_fileExit).addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 System.exit(0);
             }
         });
-        
-        file.add(fileOpen);	
-        file.add(fileExit);
-        menubar.add(file);
-        setJMenuBar(menubar);
-        
-        ///////////////////////////////Next, Prev, Image Container/////////////////////////////////////:
-        
-        //Previous
-        JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.WEST);
-		
-		JButton btnPrev = new JButton("Prev");
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(99)
-					.addComponent(btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(98))
-		);
-		panel.setLayout(gl_panel);
-		
-		//Next
-		JPanel panel_4 = new JPanel();
-		getContentPane().add(panel_4, BorderLayout.EAST);
-		
-		JButton btnNext = new JButton("Next");
-		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
-		gl_panel_4.setHorizontalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addGap(12)
-					.addComponent(btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addGap(102)
-					.addComponent(btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(95))
-		);
-		panel_4.setLayout(gl_panel_4);
-		
-		//Image Container
-		JPanel panel_1 = new JPanel();
-		getContentPane().add(panel_1, BorderLayout.CENTER);
-		
-		
-		////////////////////////////////State Buttons/////////////////////////////////
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(null);
-		getContentPane().add(panel_3, BorderLayout.SOUTH);
-		
-		JButton btnOne = new JButton("One");
-		btnOne.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnOne.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		JButton btnFour = new JButton("Four");
-		btnFour.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnFour.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-		panel_3.add(btnOne);
-		panel_3.add(btnFour);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	
-		
-	   
-
-	    
-	  
-	}
-	/**
-	 * @uml.property  name="_mainController"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="_mainView:design.MainController"
-	 */
-	private MainController _mainController = new design.MainController();
-
-	/**
-	 * Getter of the property <tt>_mainController</tt>
-	 * @return  Returns the _mainController.
-	 * @uml.property  name="_mainController"
-	 */
-	public MainController get_mainController() {
-		return _mainController;
 	}
 
-	/**
-	 * Setter of the property <tt>_mainController</tt>
-	 * @param _mainController  The _mainController to set.
-	 * @uml.property  name="_mainController"
-	 */
-	public void set_mainController(MainController _mainController) {
-		this._mainController = _mainController;
-	}
 
 	/** 
 	 * @uml.property name="_eventObj"
@@ -351,29 +414,7 @@ public class MainView extends JFrame implements Observer{
 		this._eventObj = _eventObj;
 	}
 
-	/**
-	 * @uml.property  name="_imgWindow"
-	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="composite" inverse="mainView:design.WindowFactory"
-	 */
-	private WindowFactory _imgWindow;
 
-	/**
-	 * Getter of the property <tt>_imgWindow</tt>
-	 * @return  Returns the _imgWindow.
-	 * @uml.property  name="_imgWindow"
-	 */
-	public WindowFactory get_imgWindow() {
-		return _imgWindow;
-	}
-
-	/**
-	 * Setter of the property <tt>_imgWindow</tt>
-	 * @param _imgWindow  The _imgWindow to set.
-	 * @uml.property  name="_imgWindow"
-	 */
-	public void set_imgWindow(WindowFactory _imgWindow) {
-		this._imgWindow = _imgWindow;
-	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {

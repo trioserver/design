@@ -3,12 +3,12 @@
  */
 package design;
 
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /** 
  * @author artur
  */
-public class FourWins extends JPanel {
+public class FourWins extends JLabel {
 
 	/**
 	 * 

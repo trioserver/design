@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1465,513" id="design" metadata="uml2-1.0" initialized="true" zoom="0.75" tag="10" key="32303037303533312D313020496D6756696577">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1465,513" id="design" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledY="108" tag="10" key="32303037303533312D313020496D6756696577">
   <children xsi:type="editmodel:ClassEditModel" name="MainController" location="464,135" size="154,30" id="design/MainController" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
@@ -167,14 +167,14 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="FourWins" location="1334,378" size="112,30" id="design/FourWins" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" name="FourWins" location="1319,379" size="112,30" id="design/FourWins" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" id="design/FourWins@fourWins+design/Win4Fact@win4Fact" source="//@children.14" target="//@children.11" targetEnd="//@children.14/@sourceConnections.0/@children.1" label="//@children.14/@sourceConnections.0/@children.2" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" name="fourWins" location="10,0" id="design/FourWins@fourWins+design/Win4Fact@win4Fact|design/FourWins#fourWins" attachSource="true" multiplicityLabel="//@children.14/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.14/@sourceConnections.0/@children.0/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - fourWins" location="1351,357" size="59,13" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="1330,357" size="7,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name=" - fourWins" location="1262,358" size="59,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="1335,358" size="7,13" anchorKind="FirstPart"/>
       </children>
       <children xsi:type="editmodel:AssociationEndEditModel" name="win4Fact" location="102,29" id="design/FourWins@fourWins+design/Win4Fact@win4Fact|design/Win4Fact#win4Fact"/>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>

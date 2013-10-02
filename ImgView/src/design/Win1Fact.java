@@ -4,14 +4,17 @@
 package design;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JLabel;
 
 /** 
  * @author artur
  */
 public class Win1Fact implements WindowFactory {
 
-	Win1Fact(List<BufferedImage> list)
+	Win1Fact(ArrayList<BufferedImage> list)
 	{
 		_oneWins = new design.OneWins(list);
 	}
@@ -26,7 +29,7 @@ public class Win1Fact implements WindowFactory {
 	 * @return  Returns the _oneWins.
 	 * @uml.property  name="_oneWins"
 	 */
-	public OneWins get_oneWins() {
+	public JLabel getWindow() {
 		return _oneWins;
 	}
 

@@ -3,6 +3,8 @@
  */
 package design;
 
+import javax.swing.JLabel;
+
 /** 
  * @author artur
  */
@@ -19,7 +21,7 @@ public class Win4Fact implements WindowFactory {
 	 * @return  Returns the fourWins.
 	 * @uml.property  name="fourWins"
 	 */
-	public FourWins getFourWins() {
+	public JLabel getWindow() {
 		return fourWins;
 	}
 

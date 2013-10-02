@@ -1,8 +1,8 @@
 package design;
 
 
-import java.awt.Color;
-import java.awt.Component;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,38 +10,52 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
+import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-
+import java.util.ArrayList;
 
 public class MainView extends JFrame implements Observer{
 	private String path;
-
+	
+	//int Width=800;
+	//int Heigth=600;
+	
 	public MainView()
 	{
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO.read(new File("/media/artur/Documents/foto/2008-09-03/Picture 009.jpg"));
 		
-		setResizable(false);
+		ArrayList<BufferedImage> list =new ArrayList<BufferedImage>();
+		list.add(myPicture);
+		_imgWindow = new Win1Fact(list);
+		
+		//setResizable(false);
 		setTitle("Medical Image Viewing Console");
+		setSize(800, 600);
 	    //setExtendedState(Frame.MAXIMIZED_BOTH);
-		setSize(800,600);
+		//setSize(Width,Heigth);
 		//setSize(xSize,ySize);
 		setLocationRelativeTo(null);
 	    
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
 	    
+		/////////////////////////////////////////Menu Bar generation/////////////////////////////////////
 	    
 	    JMenuBar menubar= new JMenuBar();
 	    //ImageIcon icon = new ImageIcon(getClass().getResource("exit.png"));
@@ -75,31 +89,81 @@ public class MainView extends JFrame implements Observer{
             }
         });
         
-        JPanel stateContainer=new JPanel();
-        stateContainer.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        stateContainer.setLayout(new BoxLayout(stateContainer,BoxLayout.X_AXIS));
-        JButton stateOne= new JButton("One");
-        //ImageIcon iconOne = new ImageIcon(getClass().getResource("images/stateOne.png"));
-        //stateOne.setIcon(iconOne);
-        stateOne.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-        stateContainer.add(stateOne);
-          
-        
-        
-        
-        JButton stateFour= new JButton("Four");
-        stateFour.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-        stateContainer.add(stateFour);
-        
         file.add(fileOpen);	
         file.add(fileExit);
-
         menubar.add(file);
-
         setJMenuBar(menubar);
-	    add(stateContainer);
-	    
-	    
+        
+        ///////////////////////////////Next, Prev, Image Container/////////////////////////////////////:
+        
+        //Previous
+        JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.WEST);
+		
+		JButton btnPrev = new JButton("Prev");
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(99)
+					.addComponent(btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(98))
+		);
+		panel.setLayout(gl_panel);
+		
+		//Next
+		JPanel panel_4 = new JPanel();
+		getContentPane().add(panel_4, BorderLayout.EAST);
+		
+		JButton btnNext = new JButton("Next");
+		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
+		gl_panel_4.setHorizontalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addGap(12)
+					.addComponent(btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		gl_panel_4.setVerticalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addGap(102)
+					.addComponent(btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(95))
+		);
+		panel_4.setLayout(gl_panel_4);
+		
+		//Image Container
+		JPanel panel_1 = new JPanel();
+		getContentPane().add(panel_1, BorderLayout.CENTER);
+		
+		
+		////////////////////////////////State Buttons/////////////////////////////////
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(null);
+		getContentPane().add(panel_3, BorderLayout.SOUTH);
+		
+		JButton btnOne = new JButton("One");
+		btnOne.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnOne.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		JButton btnFour = new JButton("Four");
+		btnFour.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnFour.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		panel_3.add(btnOne);
+		panel_3.add(btnFour);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	
+		
+	   
 
 	    
 	  
@@ -291,7 +355,7 @@ public class MainView extends JFrame implements Observer{
 	 * @uml.property  name="_imgWindow"
 	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="composite" inverse="mainView:design.WindowFactory"
 	 */
-	private WindowFactory _imgWindow = new design.Win1Fact();
+	private WindowFactory _imgWindow;
 
 	/**
 	 * Getter of the property <tt>_imgWindow</tt>

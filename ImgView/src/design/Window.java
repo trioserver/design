@@ -1,6 +1,9 @@
 package design;
 
+import javax.swing.JPanel;
 
-public interface Window {
+
+public abstract class Window extends JPanel {
+	private static final long serialVersionUID = -8687907176608557245L;
 
 }

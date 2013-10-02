@@ -3,6 +3,7 @@
  */
 package design;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /** 
@@ -14,14 +15,14 @@ public class Win4Fact implements WindowFactory {
 	 * @uml.property  name="fourWins"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="win4Fact:design.FourWins"
 	 */
-	private FourWins fourWins = new design.FourWins();
+	private JComponent fourWins;
 
 	/**
 	 * Getter of the property <tt>fourWins</tt>
 	 * @return  Returns the fourWins.
 	 * @uml.property  name="fourWins"
 	 */
-	public JLabel getWindow() {
+	public JComponent getWindow() {
 		return fourWins;
 	}
 

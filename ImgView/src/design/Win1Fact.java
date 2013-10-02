@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /** 
@@ -22,14 +23,14 @@ public class Win1Fact implements WindowFactory {
 	 * @uml.property  name="_oneWins"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="win1Fact:design.OneWins"
 	 */
-	private OneWins _oneWins;
+	private JComponent _oneWins;
 
 	/**
 	 * Getter of the property <tt>_oneWins</tt>
 	 * @return  Returns the _oneWins.
 	 * @uml.property  name="_oneWins"
 	 */
-	public JLabel getWindow() {
+	public JComponent getWindow() {
 		return _oneWins;
 	}
 

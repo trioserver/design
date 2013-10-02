@@ -22,6 +22,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import java.awt.event.ActionEvent;
@@ -31,6 +32,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author artur
+ *
+ */
 public class MainView extends JFrame implements Observer{
 	private String path;
 	
@@ -43,7 +48,7 @@ public class MainView extends JFrame implements Observer{
 	private JComponent _btnNext;
 	private JComponent _btnOne;
 	private JComponent _btnFour;
-	
+	private JComponent _imgContainer;
 	private Actions _next;
 	
 	/**
@@ -65,100 +70,18 @@ public class MainView extends JFrame implements Observer{
 		BufferedImage myPicture;
 		try {
 			myPicture = ImageIO.read(new File("/media/artur/Documents/foto/2008-09-03/Picture 009.jpg"));
-		
 		ArrayList<BufferedImage> list =new ArrayList<BufferedImage>();
 		list.add(myPicture);
 		_imgWindow = new Win1Fact(list);
-		JLabel window = _imgWindow.getWindow();
-		//setResizable(false);
-		setTitle("Medical Image Viewing Console");
-		setSize(800, 600);
-	    //setExtendedState(Frame.MAXIMIZED_BOTH);
-		//setSize(Width,Heigth);
-		//setSize(xSize,ySize);
-		setLocationRelativeTo(null);
-	    
-		setDefaultCloseOperation(EXIT_ON_CLOSE); 
-	    
-		/////////////////////////////////////////Menu Bar generation/////////////////////////////////////
-	    
-	    JMenuBar menubar= new JMenuBar();
-	    //ImageIcon icon = new ImageIcon(getClass().getResource("exit.png"));
-	    
-	    JMenu file=new JMenu("File");
-	    file.setMnemonic(KeyEvent.VK_F);
-	    
-	    fileOpenInit();
-	    fileExitInit();
-        
-        file.add(_fileOpen);	
-        file.add(_fileExit);
-        menubar.add(file);
-        setJMenuBar(menubar);
-        
-        ///////////////////////////////Next, Prev, Image Container/////////////////////////////////////:
-        
-        //Previous
-        JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.WEST);
-		
-		initbtnPrev();
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(_btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(99)
-					.addComponent(_btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(98))
-		);
-		panel.setLayout(gl_panel);
-		
-		//Next
-		JPanel panel_4 = new JPanel();
-		getContentPane().add(panel_4, BorderLayout.EAST);
-		
-		initbtnNext();
-		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
-		gl_panel_4.setHorizontalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addComponent(_btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addGap(102)
-					.addComponent(_btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(95))
-		);
-		panel_4.setLayout(gl_panel_4);
-		
-		//Image Container
-		JPanel panel_1 = new JPanel();
-		getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.add(window);
-		
-		
-		////////////////////////////////State Buttons/////////////////////////////////
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(null);
-		getContentPane().add(panel_3, BorderLayout.SOUTH);
-		
-		initbtnOne();
-		initbtnFour();
-		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-		panel_3.add(_btnOne);
-		panel_3.add(_btnFour);
+		_imgContainer = _imgWindow.getWindow();
+		initGUI();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
+	
 	/**
 	 * Initiate the OneState button 
 	 * 
@@ -167,7 +90,15 @@ public class MainView extends JFrame implements Observer{
 		_btnOne = new JButton("One");
 		((JButton)_btnOne).setVerticalAlignment(SwingConstants.BOTTOM);
 		((JButton)_btnOne).setHorizontalAlignment(SwingConstants.LEFT);
-        evActionbtnOne();
+       
+	
+	((JButton)_btnOne).addActionListener(new ActionListener(){
+        
+    	@Override
+    	public void actionPerformed(ActionEvent arg0){
+    	 evActionbtnOne();
+    	}
+    });
 	}
 	private void evActionbtnOne(){
 		
@@ -190,7 +121,7 @@ public class MainView extends JFrame implements Observer{
 	 * 
 	 */
 	private void initbtnPrev(){
-		_btnPrev = new JButton("Next");
+		_btnPrev = new JButton("Prev");
         evActionbtnPrev();
 	}
 	private void evActionbtnPrev(){
@@ -421,6 +352,94 @@ public class MainView extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
-	
+	private void initGUI()
+	{
+		//setResizable(false);
+				setTitle("Medical Image Viewing Console");
+				setSize(800, 600);
+			    //setExtendedState(Frame.MAXIMIZED_BOTH);
+				//setSize(Width,Heigth);
+				//setSize(xSize,ySize);
+				setLocationRelativeTo(null);
+			    
+				setDefaultCloseOperation(EXIT_ON_CLOSE); 
+			    
+				/////////////////////////////////////////Menu Bar generation/////////////////////////////////////
+			    
+			    JMenuBar menubar= new JMenuBar();
+			    //ImageIcon icon = new ImageIcon(getClass().getResource("exit.png"));
+			    
+			    JMenu file=new JMenu("File");
+			    file.setMnemonic(KeyEvent.VK_F);
+			    
+			    fileOpenInit();
+			    fileExitInit();
+		        
+		        file.add(_fileOpen);	
+		        file.add(_fileExit);
+		        menubar.add(file);
+		        setJMenuBar(menubar);
+		        
+		        ///////////////////////////////Next, Prev, Image Container/////////////////////////////////////:
+		        
+		        //Previous
+		        JPanel panel = new JPanel();
+				getContentPane().add(panel, BorderLayout.WEST);
+				
+				initbtnPrev();
+				GroupLayout gl_panel = new GroupLayout(panel);
+				gl_panel.setHorizontalGroup(
+					gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(_btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				);
+				gl_panel.setVerticalGroup(
+					gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(100)
+							.addComponent(_btnPrev, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(95))
+				);
+				panel.setLayout(gl_panel);
+				
+				//Next
+				JPanel panel_4 = new JPanel();
+				getContentPane().add(panel_4, BorderLayout.EAST);
+				
+				initbtnNext();
+				GroupLayout gl_panel_4 = new GroupLayout(panel_4);
+				gl_panel_4.setHorizontalGroup(
+					gl_panel_4.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_4.createSequentialGroup()
+							.addComponent(_btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				);
+				gl_panel_4.setVerticalGroup(
+					gl_panel_4.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_4.createSequentialGroup()
+							.addGap(100)
+							.addComponent(_btnNext, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(95))
+				);
+				panel_4.setLayout(gl_panel_4);
+				
+				//Image Container
+				//JPanel panel_1 = new JPanel();
+				getContentPane().add(_imgContainer, BorderLayout.CENTER);
+				//JScrollPane scrollPane = new JScrollPane();
+				//panel_1.add(scrollPane);
+				//
+				//panel_1.add(_imgContainer);
+				
+				
+				////////////////////////////////State Buttons/////////////////////////////////
+				JPanel panel_3 = new JPanel();
+				panel_3.setBorder(null);
+				getContentPane().add(panel_3, BorderLayout.SOUTH);
+				
+				initbtnOne();
+				initbtnFour();
+				panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+				panel_3.add(_btnOne);
+				panel_3.add(_btnFour);
+	}
 
 }

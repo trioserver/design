@@ -41,6 +41,13 @@ public class FourWins extends JPanel {
 			add(label);
 			i++;
 		}
+		for (;i<4;i++)
+		{
+			JLabel label=new JLabel();
+			label.setHorizontalAlignment(JLabel.CENTER);
+			label.setVerticalAlignment(JLabel.CENTER);
+			add(label);
+		}
 		
 		//if(list.size()!=1) throw new
 	}

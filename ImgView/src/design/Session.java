@@ -15,7 +15,7 @@ public class Session extends Observable{
 		collection=new ImageContainer(path);
 		nbrImages = collection.findSize(path);
 		currentImage = 0;
-		displayState = 4;
+		displayState = 1;
 		doNext();
 		if (nbrImages==0)notifyObservers(-1);
 	}
@@ -96,6 +96,12 @@ public class Session extends Observable{
 	public void notifyObservers() {
 		// TODO Auto-generated method stub
 		super.notifyObservers();
+	}
+
+	public void saveStudy(String params) {
+		collection.saveStudy(params);
+		// TODO Auto-generated method stub
+		
 	}
 	
 

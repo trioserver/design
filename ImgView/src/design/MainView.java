@@ -44,6 +44,7 @@ public class MainView extends JFrame implements Observer{
 	//int Heigth=600;
 	
 	private JComponent _fileOpen;
+	private JComponent _fileSave;
 	private JComponent _fileExit;
 	private JComponent _btnPrev;
 	private JComponent _btnNext;
@@ -54,6 +55,7 @@ public class MainView extends JFrame implements Observer{
 	private Actions _prev;
 	private Actions _init;
 	private Actions _chgState;
+	private Actions _saveStudy;
 	
 	/**
 	 * @uml.property  name="_imgWindow"
@@ -70,9 +72,10 @@ public class MainView extends JFrame implements Observer{
 		
 	public MainView()
 	{
-		_imgWindow = new Win4Fact();
+		_imgWindow = new Win1Fact();
 		_next = new DoNext();
 		_prev = new DoPrev();
+		_saveStudy = new SaveStudy();
 		_chgState = new ChgState();
 		_imgContainer = new JPanel();
 		_imgContainer.setLayout(new CardLayout(0, 0));
@@ -86,6 +89,9 @@ public class MainView extends JFrame implements Observer{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}*/
+		
+		
+		initGUI();
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = fileChooser.showOpenDialog(null);
@@ -93,8 +99,6 @@ public class MainView extends JFrame implements Observer{
 		{
 			_init = new InitStudy(fileChooser.getSelectedFile().toString(),this);
 		}
-		
-		initGUI();
 		//ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
 		//try {
 		//list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head01.jpg")));
@@ -218,6 +222,33 @@ public class MainView extends JFrame implements Observer{
         	}
         });
 	}
+	private void fileSaveInit(){
+		_fileSave= new JMenuItem("Save as..");
+	    ((JMenuItem)_fileSave).setMnemonic(KeyEvent.VK_S);
+        _fileSave.setToolTipText("Sace current study in a different directory");
+        evActionFileSave();
+	}
+	/**
+	 * Set default action for fileOpen item
+	 * Overriding actionPerformed method
+	 * 
+	 */
+	private void evActionFileSave()
+	{
+		((JMenuItem)_fileSave).addActionListener(new ActionListener(){
+	        
+        	@Override
+        	public void actionPerformed(ActionEvent arg0){
+        		JFileChooser fileChooser = new JFileChooser();
+        		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        		int returnVal = fileChooser.showOpenDialog(null);
+        		if (returnVal == JFileChooser.APPROVE_OPTION)
+        		{
+        			_saveStudy.initAction(fileChooser.getSelectedFile().toString());
+        		}
+        	}
+        });
+	}
 	public void initStudy(String path)
 	{
 	_init = new InitStudy(path,this);
@@ -272,9 +303,11 @@ public class MainView extends JFrame implements Observer{
 			    file.setMnemonic(KeyEvent.VK_F);
 			    
 			    fileOpenInit();
+			    fileSaveInit();
 			    fileExitInit();
 		        
-		        file.add(_fileOpen);	
+		        file.add(_fileOpen);
+		        file.add(_fileSave);
 		        file.add(_fileExit);
 		        menubar.add(file);
 		        setJMenuBar(menubar);

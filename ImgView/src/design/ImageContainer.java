@@ -60,4 +60,10 @@ public class ImageContainer {
 	{
 		return _imgPull.getSize(path);
 	}
+
+	public void saveStudy(String params) {
+		
+		// TODO Auto-generated method stub
+		
+	}
 }

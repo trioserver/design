@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1465,513" id="design" metadata="uml2-1.0" initialized="true" zoom="0.75" tag="10" key="32303037303533312D313020496D6756696577">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1465,513" id="design" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledY="68" tag="10" key="32303037303533312D313020496D6756696577">
   <children xsi:type="editmodel:ClassEditModel" name="MainController" location="464,135" size="154,30" id="design/MainController" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="design/MainController@_mainController+design/MainView@_mainView" source="//@children.0" target="//@children.1" targetEnd="//@children.0/@sourceConnections.0/@children.1" label="//@children.0/@sourceConnections.0/@children.2" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="_mainController" location="154,15" id="design/MainController@_mainController+design/MainView@_mainView|design/MainController#_mainController" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.0/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - _mainController" location="624,129" size="95,13" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="624,156" size="7,13" anchorKind="FirstPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="_mainController" location="154,14" id="design/MainController@_mainController+design/MainView@_mainView|design/MainController#_mainController" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.0/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - _mainController" location="624,128" size="95,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="624,155" size="7,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="_mainView" location="0,16" id="design/MainController@_mainController+design/MainView@_mainView|design/MainView#_mainView"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="_mainView" location="0,15" id="design/MainController@_mainController+design/MainView@_mainView|design/MainView#_mainView"/>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="design/Actions@_actions+design/MainController@mainController" source="//@children.0" target="//@children.5" targetEnd="//@children.0/@sourceConnections.1/@children.1" label="//@children.0/@sourceConnections.1/@children.2" sourceEnd="//@children.0/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
@@ -21,10 +21,10 @@
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="design/Session@_session+design/MainController@mainController" source="//@children.0" target="//@children.15" targetEnd="//@children.0/@sourceConnections.2/@children.1" label="//@children.0/@sourceConnections.2/@children.2" sourceEnd="//@children.0/@sourceConnections.2/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="mainController" location="0,14" id="design/Session@_session+design/MainController@mainController|design/MainController#mainController" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="_session" location="139,14" id="design/Session@_session+design/MainController@mainController|design/Session#_session" multiplicityLabel="//@children.0/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.2/@children.1/@children.0" aggregationKind="Composition" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - _session" location="400,128" size="57,13" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="400,155" size="7,13" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="mainController" location="0,15" id="design/Session@_session+design/MainController@mainController|design/MainController#mainController" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="_session" location="139,15" id="design/Session@_session+design/MainController@mainController|design/Session#_session" multiplicityLabel="//@children.0/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.2/@children.1/@children.0" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - _session" location="400,129" size="57,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="400,156" size="7,13" anchorKind="LastPart"/>
       </children>
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
     </sourceConnections>
@@ -84,7 +84,7 @@
   <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.6/@sourceConnections.0 //@children.7/@sourceConnections.0 //@children.8/@sourceConnections.0 //@children.0/@sourceConnections.1" name="Actions" location="492,270" size="104,68" id="design/Actions" runTimeClassModel="initAction()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="81,18">
-      <children xsi:type="editmodel:MethodEditModel" name="initAction" id="design/Actions#initAction()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initAction" id="design/Actions#initAction(Ljava.lang.Object;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
@@ -92,7 +92,7 @@
   <children xsi:type="editmodel:ClassEditModel" name="DoNext" location="419,380" size="104,68" id="design/DoNext" runTimeClassModel="initAction()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="81,18">
-      <children xsi:type="editmodel:MethodEditModel" name="initAction" id="design/DoNext#initAction()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initAction" id="design/DoNext#initAction(Ljava.lang.Object;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="design/Actions&lt;-design/DoNext" source="//@children.6" target="//@children.5" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
@@ -104,7 +104,7 @@
   <children xsi:type="editmodel:ClassEditModel" name="ChgState" location="515,379" size="111,68" id="design/ChgState" runTimeClassModel="initAction()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="81,18">
-      <children xsi:type="editmodel:MethodEditModel" name="initAction" id="design/ChgState#initAction()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initAction" id="design/ChgState#initAction(Ljava.lang.Object;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="design/Actions&lt;-design/ChgState" source="//@children.7" target="//@children.5" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
@@ -116,7 +116,7 @@
   <children xsi:type="editmodel:ClassEditModel" name="DoPrev" location="641,380" size="104,68" id="design/DoPrev" runTimeClassModel="initAction()">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="81,18">
-      <children xsi:type="editmodel:MethodEditModel" name="initAction" id="design/DoPrev#initAction()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initAction" id="design/DoPrev#initAction(Ljava.lang.Object;)"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="design/Actions&lt;-design/DoPrev" source="//@children.8" target="//@children.5" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
@@ -178,8 +178,8 @@
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="FourWins" location="1319,379" size="112,68" id="design/FourWins" runTimeClassModel="FourWins(Ljava.util.ArrayList;)">
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+  <children xsi:type="editmodel:ClassEditModel" name="FourWins" location="1319,379" size="112,86" id="design/FourWins" runTimeClassModel="FourWins(Ljava.util.ArrayList;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="46,18"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="80,18">
       <children xsi:type="editmodel:MethodEditModel" name="FourWins" id="design/FourWins#FourWins(Ljava.util.ArrayList;)"/>
     </children>

@@ -14,8 +14,17 @@ import javax.swing.JLabel;
  * @author artur
  */
 public class Win1Fact implements WindowFactory {
-
+	
+	Win1Fact()
+	{
+		_oneWins = new design.OneWins();
+	}
+	
 	Win1Fact(ArrayList<BufferedImage> list)
+	{
+		_oneWins = new design.OneWins(list);
+	}
+	public void update(ArrayList<BufferedImage> list)
 	{
 		_oneWins = new design.OneWins(list);
 	}

@@ -8,28 +8,82 @@ import java.util.Observable;
  */
 public class Session extends Observable{
 
+	
+	public void chgStudy(String path)
+	{
+		_dirPath=path;
+		collection=new ImageContainer(path);
+		nbrImages = collection.findSize(path);
+		currentImage = 0;
+		displayState = 4;
+		doNext();
+		if (nbrImages==0)notifyObservers(-1);
+	}
 	/** 
-	 * @uml.property name="collection"
-	 * @uml.associationEnd multiplicity="(1 1)" aggregation="shared" inverse="session:design.Collection"
+	 * @uml.property name="imageCont"
+	 * @uml.associationEnd multiplicity="(1 1)" aggregation="shared" inverse="session:design.ImageContainer"
 	 */
-	private Collection collection = new design.Collection();
+	private int displayState;
+	private ImageContainer collection;
+	private int currentImage;
+	private int nbrImages;
+	String _dirPath;
 
 	/** 
-	 * Getter of the property <tt>collection</tt>
-	 * @return  Returns the collection.
-	 * @uml.property  name="collection"
+	 * Getter of the property <tt>imageCont</tt>
+	 * @return  Returns the imageCont.
+	 * @uml.property  name="imageCont"
 	 */
-	public Collection getCollection() {
+	public ImageContainer getCollection() {
 		return collection;
 	}
 
 	/** 
-	 * Setter of the property <tt>collection</tt>
-	 * @param collection  The collection to set.
-	 * @uml.property  name="collection"
+	 * Setter of the property <tt>imageCont</tt>
+	 * @param imageCont  The imageCont to set.
+	 * @uml.property  name="imageCont"
 	 */
-	public void setCollection(Collection collection) {
-		this.collection = collection;
+	public void setCollection(ImageContainer  imageCont) {
+		this.collection = imageCont;
+	}
+	
+	public void doNext() {
+		int overload=(currentImage+displayState)-nbrImages;
+		if (overload<displayState){	
+			setChanged();
+			if(overload<=0){
+			notifyObservers(collection.doNext(currentImage, displayState));
+			currentImage+=displayState;
+			}
+			else{
+			notifyObservers(collection.doNext(currentImage, displayState-overload));
+			currentImage=nbrImages-1;
+			}
+		}
+	}
+	
+	public void doPrevious() {
+		if (currentImage-2*displayState>=0)
+		{
+			setChanged();
+			currentImage=currentImage-2*displayState;
+			if(currentImage>=displayState){
+			notifyObservers(collection.doPrevious(currentImage, displayState));
+			currentImage=currentImage+displayState;
+			}else{
+			notifyObservers(collection.doPrevious(currentImage, currentImage));
+			currentImage=0;
+			}
+		}
+	}
+	
+	public void changeState(int toState) {
+		currentImage = currentImage-displayState;
+		if (currentImage<0)currentImage=0;
+		if (currentImage+toState>=nbrImages)currentImage=nbrImages-toState-1;
+		displayState = toState;
+		setChanged();
+		notifyObservers(collection.doNext(currentImage, toState));
 	}
 
 	@Override

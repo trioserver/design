@@ -22,14 +22,22 @@ public class OneWins extends JLabel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public OneWins()
+	{
+		super();
+	}
 	public OneWins(ArrayList<BufferedImage> list)
 	{
 		super();
-		Image img = resize(list.get(0));
-		setIcon(new ImageIcon(img));
+		//Image img = resize(list.get(0));
+		setIcon(new ImageIcon(list.get(0)));
 		setHorizontalAlignment(JLabel.CENTER);
         setVerticalAlignment(JLabel.CENTER);
 		//if(list.size()!=1) throw new
+	}
+	public void update(ArrayList<BufferedImage> list)
+	{
+		setIcon(new ImageIcon(list.get(0)));
 	}
 	public Image resize(BufferedImage img)
 	{

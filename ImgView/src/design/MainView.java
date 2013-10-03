@@ -2,6 +2,7 @@ package design;
 
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -50,6 +51,9 @@ public class MainView extends JFrame implements Observer{
 	private JComponent _btnFour;
 	private JComponent _imgContainer;
 	private Actions _next;
+	private Actions _prev;
+	private Actions _init;
+	private Actions _chgState;
 	
 	/**
 	 * @uml.property  name="_imgWindow"
@@ -66,19 +70,44 @@ public class MainView extends JFrame implements Observer{
 		
 	public MainView()
 	{
+		_imgWindow = new Win4Fact();
 		_next = new DoNext();
-		BufferedImage myPicture;
-		try {
-			myPicture = ImageIO.read(new File("/media/artur/Documents/foto/2008-09-03/Picture 009.jpg"));
-		ArrayList<BufferedImage> list =new ArrayList<BufferedImage>();
-		list.add(myPicture);
-		_imgWindow = new Win1Fact(list);
-		_imgContainer = _imgWindow.getWindow();
-		initGUI();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		_prev = new DoPrev();
+		_chgState = new ChgState();
+		_imgContainer = new JPanel();
+		_imgContainer.setLayout(new CardLayout(0, 0));
+		/*ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
+				try {
+				list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head01.jpg")));
+				list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head02.jpg")));
+				list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head03.jpg")));
+				list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head04.jpg")));
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int returnVal = fileChooser.showOpenDialog(null);
+		if (returnVal == JFileChooser.APPROVE_OPTION)
+		{
+			_init = new InitStudy(fileChooser.getSelectedFile().toString(),this);
 		}
+		
+		initGUI();
+		//ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
+		//try {
+		//list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head01.jpg")));
+		//list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head02.jpg")));
+		//list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head03.jpg")));
+		//list.add(ImageIO.read(new File("/home/artur/Downloads/MedImageViewerStudies/axial_head_mri/head04.jpg")));
+		//_imgWindow = new Win4Fact(list);
+		//_imgContainer = _imgWindow.getWindow();
+		//initGUI();
+		//} catch (IOException e) {
+		//	// TODO Auto-generated catch block
+		//	e.printStackTrace();
+		//}
 
 	}
 	
@@ -90,18 +119,18 @@ public class MainView extends JFrame implements Observer{
 		_btnOne = new JButton("One");
 		((JButton)_btnOne).setVerticalAlignment(SwingConstants.BOTTOM);
 		((JButton)_btnOne).setHorizontalAlignment(SwingConstants.LEFT);
-       
-	
-	((JButton)_btnOne).addActionListener(new ActionListener(){
-        
-    	@Override
-    	public void actionPerformed(ActionEvent arg0){
-    	 evActionbtnOne();
-    	}
-    });
+		((JButton)_btnOne).addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    	 evActionbtnOne();
+	    	}
+		});
 	}
 	private void evActionbtnOne(){
-		
+		_imgWindow = new Win1Fact();
+		_chgState.initAction(1);
+		((JButton) _btnOne).disable();
+		((JButton) _btnFour).enable();
 	}
 	/**
 	 * Initiate the FourState button 
@@ -111,9 +140,18 @@ public class MainView extends JFrame implements Observer{
 		_btnFour = new JButton("Four");
 		((JButton)_btnFour).setVerticalAlignment(SwingConstants.BOTTOM);
 		((JButton)_btnFour).setHorizontalAlignment(SwingConstants.LEFT);
-        evActionbtnFour();
+		((JButton)_btnFour).addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    	 evActionbtnFour();
+	    	}
+		});
 	}
 	private void evActionbtnFour(){
+		_imgWindow = new Win4Fact();
+		_chgState.initAction(4);
+		((JButton) _btnFour).disable();
+		((JButton) _btnOne).enable();
 		
 	}
 	/**
@@ -122,10 +160,15 @@ public class MainView extends JFrame implements Observer{
 	 */
 	private void initbtnPrev(){
 		_btnPrev = new JButton("Prev");
-        evActionbtnPrev();
+		((JButton)_btnPrev).addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    		evActionbtnPrev();
+	    	}
+		});
 	}
 	private void evActionbtnPrev(){
-		
+		_prev.initAction(-1);
 	}
 	/**
 	 * Initiate the Next button item
@@ -133,10 +176,15 @@ public class MainView extends JFrame implements Observer{
 	 */
 	private void initbtnNext(){
 		_btnNext = new JButton("Next");
-        evActionbtnNext();
+		((JButton)_btnNext).addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    		evActionbtnNext();
+	    	}
+		});
 	}
 	private void evActionbtnNext(){
-		_next.initAction();
+		_next.initAction(-1);
 	}
 	
 	/**
@@ -165,10 +213,14 @@ public class MainView extends JFrame implements Observer{
         		int returnVal = fileChooser.showOpenDialog(null);
         		if (returnVal == JFileChooser.APPROVE_OPTION)
         		{
-        			path=fileChooser.getSelectedFile().toString();
+        			initStudy(fileChooser.getSelectedFile().toString());
         		}
         	}
         });
+	}
+	public void initStudy(String path)
+	{
+	_init = new InitStudy(path,this);
 	}
 	/**
 	 * Initiate the _fileExit menu item
@@ -185,172 +237,19 @@ public class MainView extends JFrame implements Observer{
         });
 	}
 
-
-	/** 
-	 * @uml.property name="_eventObj"
-	 * @uml.associationEnd multiplicity="(0 -1)" ordering="true" aggregation="shared" inverse="_mainView:design.EventObj"
-	 */
-	private ArrayList _eventObj = new java.util.ArrayList();
-
-	/** 
-	 * Getter of the property <tt>_eventObj</tt>
-	 * @return  Returns the _eventObj.
-	 * @uml.property  name="_eventObj"
-	 */
-	public ArrayList get_eventObj() {
-		return _eventObj;
-	}
-
-	/** 
-	 * Getter of the property <tt>_eventObj</tt>
-	 * @return  Returns the _eventObj.
-	 * @uml.property  name="_eventObj"
-	 */
-	public EventObj get_eventObj(int i) {
-		return (EventObj) _eventObj.get(i);
-	}
-
-	/**
-	 * Returns an iterator over the elements in this list in proper sequence.
-	 * @return  an iterator over the elements in this list in proper sequence.
-	 * @see java.util.List#iterator()
-	 * @uml.property  name="_eventObj"
-	 */
-	public Iterator _eventObjIterator() {
-		return _eventObj.iterator();
-	}
-
-	/**
-	 * Returns <tt>true</tt> if this list contains no elements.
-	 * @return  <tt>true</tt> if this list contains no elements.
-	 * @see java.util.List#isEmpty()
-	 * @uml.property  name="_eventObj"
-	 */
-	public boolean is_eventObjEmpty() {
-		return _eventObj.isEmpty();
-	}
-
-	/**
-	 * Returns <tt>true</tt> if this list contains the specified element.
-	 * @param element  element whose presence in this list is to be tested.
-	 * @return  <tt>true</tt> if this list contains the specified element.
-	 * @see java.util.List#contains(Object)
-	 * @uml.property  name="_eventObj"
-	 */
-	public boolean contains_eventObj(EventObj eventObj) {
-		return _eventObj.contains(eventObj);
-	}
-
-	/**
-	 * Returns <tt>true</tt> if this list contains all of the elements of the specified collection.
-	 * @param elements  collection to be checked for containment in this list.
-	 * @return  <tt>true</tt> if this list contains all of the elements of the specified collection.
-	 * @see java.util.List#containsAll(Collection)
-	 * @uml.property  name="_eventObj"
-	 */
-	public boolean containsAll_eventObj(Collection _eventObj) {
-		return this._eventObj.containsAll(_eventObj);
-	}
-
-	/**
-	 * Returns the number of elements in this list.
-	 * @return  the number of elements in this list.
-	 * @see java.util.List#size()
-	 * @uml.property  name="_eventObj"
-	 */
-	public int _eventObjSize() {
-		return _eventObj.size();
-	}
-
-	/**
-	 * Returns an array containing all of the elements in this list in proper sequence.
-	 * @return  an array containing all of the elements in this list in proper sequence.
-	 * @see java.util.List#toArray()
-	 * @uml.property  name="_eventObj"
-	 */
-	public EventObj[] _eventObjToArray() {
-		return (EventObj[]) _eventObj.toArray(new EventObj[_eventObj.size()]);
-	}
-
-	/**
-	 * Returns an array containing all of the elements in this list in proper sequence; the runtime type of the returned array is that of the specified array.
-	 * @param a  the array into which the elements of this list are to be stored.
-	 * @return  an array containing all of the elements in this list in proper sequence.
-	 * @see java.util.List#toArray(Object[])
-	 * @uml.property  name="_eventObj"
-	 */
-	public EventObj[] _eventObjToArray(EventObj[] _eventObj) {
-		return (EventObj[]) this._eventObj.toArray(_eventObj);
-	}
-
-	/**
-	 * Inserts the specified element at the specified position in this list (optional operation)
-	 * @param index  index at which the specified element is to be inserted.
-	 * @param element  element to be inserted.
-	 * @see java.util.List#add(int,Object)
-	 * @uml.property  name="_eventObj"
-	 */
-	public void add_eventObj(int index, EventObj eventObj) {
-		_eventObj.add(index, eventObj);
-	}
-
-	/**
-	 * Appends the specified element to the end of this list (optional operation).
-	 * @param element  element to be appended to this list.
-	 * @return  <tt>true</tt> (as per the general contract of the <tt>Collection.add</tt> method).
-	 * @see java.util.List#add(Object)
-	 * @uml.property  name="_eventObj"
-	 */
-	public boolean add_eventObj(EventObj eventObj) {
-		return _eventObj.add(eventObj);
-	}
-
-	/**
-	 * Removes the element at the specified position in this list (optional operation).
-	 * @param index  the index of the element to removed.
-	 * @return  the element previously at the specified position.
-	 * @see java.util.List#remove(int)
-	 * @uml.property  name="_eventObj"
-	 */
-	public Object remove_eventObj(int index) {
-		return _eventObj.remove(index);
-	}
-
-	/**
-	 * Removes the first occurrence in this list of the specified element  (optional operation).
-	 * @param element  element to be removed from this list, if present.
-	 * @return  <tt>true</tt> if this list contained the specified element.
-	 * @see java.util.List#remove(Object)
-	 * @uml.property  name="_eventObj"
-	 */
-	public boolean remove_eventObj(EventObj eventObj) {
-		return _eventObj.remove(eventObj);
-	}
-
-	/**
-	 * Removes all of the elements from this list (optional operation).
-	 * @see java.util.List#clear()
-	 * @uml.property  name="_eventObj"
-	 */
-	public void clear_eventObj() {
-		_eventObj.clear();
-	}
-
-	/** 
-	 * Setter of the property <tt>_eventObj</tt>
-	 * @param _eventObj  the _eventObj to set.
-	 * @uml.property  name="_eventObj"
-	 */
-	public void set_eventObj(ArrayList _eventObj) {
-		this._eventObj = _eventObj;
-	}
-
-
-
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		
+		if (arg1 instanceof ArrayList<?>)
+		{
+			_imgWindow.update((ArrayList<BufferedImage>)arg1);
+			_imgContainer.removeAll();
+			_imgContainer.add(_imgWindow.getWindow());
+			revalidate();
+			repaint();
+			//getContentPane().add(_imgContainer, BorderLayout.CENTER);
+			//repaint();
+		}
 	}
 	private void initGUI()
 	{

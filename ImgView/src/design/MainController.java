@@ -198,7 +198,7 @@ public class MainController {
 	 * @uml.property  name="_session"
 	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="composite" inverse="mainController:design.Session"
 	 */
-	private Session _session = new design.Session();
+	private Session _session;
 
 	/**
 	 * Getter of the property <tt>_session</tt>

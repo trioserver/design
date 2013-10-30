@@ -276,7 +276,7 @@ public class MainView extends JFrame implements Observer{
 			_imgWindow.update((ArrayList<BufferedImage>)arg1);
 			_imgContainer.removeAll();
 			_imgContainer.add(_imgWindow.getWindow());
-			revalidate();
+			validate();
 			repaint();
 			//getContentPane().add(_imgContainer, BorderLayout.CENTER);
 			//repaint();

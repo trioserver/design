@@ -1,53 +1,60 @@
-/**
- * 
+/*
+ * Author: 		Brendan Kirby
+ * Author: 		Artur Braga
+ * Author:		Michael Surdouski
+ * Author:		William Dougherty
+ * Author: 		Jason McEvoy
+ * File: 		Win4Fact.java
+ * Description: 
  */
+
 package design;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 
-/** 
- * @author artur
- */
+/** Four image Window Factory */
 public class Win4Fact implements WindowFactory {
-	public Win4Fact()
-	{
-		fourWins=new FourWins();
+	
+	/**
+	 * 
+	 */
+	public Win4Fact() {
+		fourWins = new FourWins();
 	}
 
-	public Win4Fact(ArrayList<BufferedImage> list)
-	{
-		fourWins=new FourWins(list);
-	}
-	public void update(ArrayList<BufferedImage> list)
-	{
-		fourWins=new FourWins(list);
-	}
 	/**
-	 * @uml.property  name="fourWins"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="win4Fact:design.FourWins"
+	 * 
+	 * @param list
 	 */
+	public Win4Fact(ArrayList<BufferedImage> list) {
+		fourWins = new FourWins(list);
+	}
+	
+	/**
+	 * 
+	 */
+	public void update(ArrayList<BufferedImage> list) {
+		fourWins = new FourWins(list);
+	}
+	
+	/**  */
 	private JComponent fourWins;
 
 	/**
-	 * Getter of the property <tt>fourWins</tt>
-	 * @return  Returns the fourWins.
-	 * @uml.property  name="fourWins"
+	 * Gets a fourWins object
+	 * @return  Returns the fourWins
 	 */
 	public JComponent getWindow() {
 		return fourWins;
 	}
 
 	/**
-	 * Setter of the property <tt>fourWins</tt>
-	 * @param fourWins  The fourWins to set.
-	 * @uml.property  name="fourWins"
+	 * Sets a fourWins object
+	 * @param fourWins  The fourWins to set
 	 */
 	public void setFourWins(FourWins fourWins) {
 		this.fourWins = fourWins;
 	}
-
 }

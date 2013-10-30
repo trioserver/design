@@ -1,6 +1,13 @@
-/**
- * 
+/*
+ * Author: 		Brendan Kirby
+ * Author: 		Artur Braga
+ * Author:		Michael Surdouski
+ * Author:		William Dougherty
+ * Author: 		Jason McEvoy
+ * File: 		LocalImg.java
+ * Description: 
  */
+
 package design;
 
 import java.awt.image.BufferedImage;
@@ -11,26 +18,36 @@ import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
-/** 
- * @author artur
- */
+/** Local Image */
 public class LocalImg implements LoadImg {
+	
+	/** ArrayList of paths for medical images */
 	ArrayList<File> _imagesPaths;
-	public LocalImg(String path)
-	{
-		_imagesPaths=new ArrayList<File>();
+	
+	/**
+	 * 
+	 * @param path
+	 */
+	public LocalImg(String path) {
+		_imagesPaths = new ArrayList<File>();
 		init(path);
 	}
-	public void init(String path)
-	{
+	
+	/** 
+	 * 
+	 */
+	public void init(String path) {
 		File dir = new File(path);
-		if (dir.isDirectory())
-		{
-			File[] tab=dir.listFiles();
+		if (dir.isDirectory()) {
+			File[] tab = dir.listFiles();
 			Arrays.sort(tab);
-			_imagesPaths=new ArrayList<File>(Arrays.asList(tab));
+			_imagesPaths = new ArrayList<File>(Arrays.asList(tab));
 		}
 	}
+	
+	/**
+	 * 
+	 */
 	public BufferedImage load(int index) throws IOException {
 		BufferedImage myPicture;
 		File imgpath = _imagesPaths.get(index);
@@ -38,10 +55,11 @@ public class LocalImg implements LoadImg {
 		return myPicture;	
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public int getSize(String path) {
 		return _imagesPaths.size();
 	}
-	
-	
 }

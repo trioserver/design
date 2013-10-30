@@ -1,18 +1,25 @@
-/**
- * 
+/*
+ * Author: 		Brendan Kirby
+ * Author: 		Artur Braga
+ * Author:		Michael Surdouski
+ * Author:		William Dougherty
+ * Author: 		Jason McEvoy
+ * File: 		Main.java
+ * Description: 
  */
+
 package design;
+
 import javax.swing.SwingUtilities;
-/** 
- * @author artur
- */
+
+/** Main class */
 public class Main {
 
 	/**
-	 * @param args
+	 * The main method
+	 * @param args	command line arguments
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -21,6 +28,4 @@ public class Main {
             }
         });
 	}
-
-
 }

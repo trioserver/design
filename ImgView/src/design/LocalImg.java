@@ -5,7 +5,7 @@
  * Author:		William Dougherty
  * Author: 		Jason McEvoy
  * File: 		LocalImg.java
- * Description: 
+ * Description: Load a local image
  */
 
 package design;
@@ -21,12 +21,12 @@ import javax.imageio.ImageIO;
 /** Local Image */
 public class LocalImg implements LoadImg {
 	
-	/** ArrayList of paths for medical images */
+	/** ArrayList of paths for images */
 	ArrayList<File> _imagesPaths;
 	
 	/**
-	 * 
-	 * @param path
+	 * Constructs a LocalImg with an ArrayList of paths
+	 * @param path	Directory of a medical image
 	 */
 	public LocalImg(String path) {
 		_imagesPaths = new ArrayList<File>();
@@ -34,7 +34,7 @@ public class LocalImg implements LoadImg {
 	}
 	
 	/** 
-	 * 
+	 * Initial actions for images
 	 */
 	public void init(String path) {
 		File dir = new File(path);
@@ -46,7 +46,7 @@ public class LocalImg implements LoadImg {
 	}
 	
 	/**
-	 * 
+	 * Load a local image
 	 */
 	public BufferedImage load(int index) throws IOException {
 		BufferedImage myPicture;
@@ -56,7 +56,7 @@ public class LocalImg implements LoadImg {
 	}
 
 	/**
-	 * 
+	 * Get the size of a list of paths
 	 */
 	@Override
 	public int getSize(String path) {

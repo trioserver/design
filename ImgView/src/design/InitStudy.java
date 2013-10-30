@@ -14,18 +14,18 @@ package design;
 public class InitStudy extends Actions {
     
 	/**
-	 * 
+	 * Constructs InitStudy
 	 * @param params
-	 * @param ui
+	 * @param ui		The main view
 	 */
-	public InitStudy(String params,MainView ui) {
+	public InitStudy(String params, MainView ui) {
 		Actions._session=new Session();
 		Actions.addUiObserver(ui);
 		initAction(params);
 	}
 	
 	/**
-	 * 
+	 * Initiate the Action to change Session
 	 */
 	@Override
 	public void initAction(Object params) {

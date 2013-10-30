@@ -5,7 +5,7 @@
  * Author:		William Dougherty
  * Author: 		Jason McEvoy
  * File: 		LoadImg.java
- * Description: 
+ * Description: Interface to load an image
  */
 
 package design;
@@ -15,6 +15,7 @@ import java.io.IOException;
 
 /** Load Image */
 public interface LoadImg {
+	
 	/**
 	 * 
 	 * @param path
@@ -22,16 +23,16 @@ public interface LoadImg {
 	public void init(String path);
 	
 	/**
-	 * 
-	 * @param index
-	 * @return
+	 * Load an image
+	 * @param index			Index of an image
+	 * @return				The loaded image
 	 * @throws IOException
 	 */
 	public abstract BufferedImage load(int index) throws IOException;
 	
 	/**
-	 * 
-	 * @param path
+	 * Get the size of a study
+	 * @param path	The path of a medical image study
 	 * @return
 	 */
 	public abstract int getSize(String path);

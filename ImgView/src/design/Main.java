@@ -5,7 +5,7 @@
  * Author:		William Dougherty
  * Author: 		Jason McEvoy
  * File: 		Main.java
- * Description: 
+ * Description: Allows access to main controller and handles termination
  */
 
 package design;

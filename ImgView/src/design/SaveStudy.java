@@ -5,7 +5,7 @@
  * Author:		William Dougherty
  * Author: 		Jason McEvoy
  * File: 		SaveStudy.java
- * Description: 
+ * Description: Action used to save a study
  */
 
 package design;
@@ -14,7 +14,8 @@ package design;
 public class SaveStudy extends Actions {
 
 	/**
-	 * 
+	 * Initiate SaveStudy Action
+	 * @param params	optional parameters
 	 */
 	@Override
 	public void initAction(Object params) {

@@ -8,7 +8,7 @@
  * Description: Interface to load an image
  */
 
-package design;
+package Model;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

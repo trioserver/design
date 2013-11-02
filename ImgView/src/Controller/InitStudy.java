@@ -8,7 +8,10 @@
  * Description: 
  */
 
-package design;
+package Controller;
+
+import Model.Session;
+import View.MainView;
 
 /** Initiate Study */
 public class InitStudy extends Actions {

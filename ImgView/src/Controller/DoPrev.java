@@ -8,7 +8,8 @@
  * Description: Action used to scroll to the previous medical image(s) in a study
  */
 
-package design;
+package Controller;
+
 
 /** Do Previous Action */
 public class DoPrev extends Actions {

@@ -12,25 +12,26 @@
  * 				holder and state for the system.
  */
 
-package design;
+package Model;
 
 import java.util.Observable;
+
 
 /** Session */
 public class Session extends Observable{
 
 	private int displayState;
-	private ImageContainer collection;
+	//private ImageContainer collection;
 	private int currentImage;
 	private int nbrImages;
-	String _dirPath;
+	//private String _dirPath;
 	
 	/** 
 	 * Open a new medical image study
 	 * @param path	A directory with a medical image study
 	 */
-	public void chgStudy(String path) {
-		_dirPath=path;
+	/*
+	public void chgStudy() {
 		collection=new ImageContainer(path);
 		nbrImages = collection.findSize(path);
 		currentImage = 0;
@@ -38,26 +39,32 @@ public class Session extends Observable{
 		doNext();
 		if (nbrImages==0)notifyObservers(-1);
 	}
+	*/
 	
 	/** 
 	 * Gets an imageCont object
 	 * @return  Returns the imageCont
 	 */
+	/*
 	public ImageContainer getCollection() {
 		return collection;
 	}
+	*/
 
 	/** 
 	 * Sets an imageCont object
 	 * @param imageCont  The imageCont to set
 	 */
+	/*
 	public void setCollection(ImageContainer imageCont) {
 		this.collection = imageCont;
 	}
+	*/
 	
 	/**
 	 * Scroll to the next medical image(s) in a study
 	 */
+	/*
 	public void doNext() {
 		int overload = (currentImage + displayState) - nbrImages;
 		if (overload < displayState) {	
@@ -71,10 +78,12 @@ public class Session extends Observable{
 			}
 		}
 	}
+	*/
 	
 	/**
 	 * Scroll to the previous medical image(s) in a study
 	 */
+	/*
 	public void doPrevious() {
 		if (currentImage - 2 * displayState >= 0) {
 			setChanged();
@@ -88,11 +97,13 @@ public class Session extends Observable{
 			}
 		}
 	}
+	*/
 	
 	/**
 	 * Change the display state of the medical images
 	 * @param toState	A new state
 	 */
+	/*
 	public void changeState(int toState) {
 		currentImage = currentImage - displayState;
 		if (currentImage < 0) {
@@ -105,19 +116,23 @@ public class Session extends Observable{
 		setChanged();
 		notifyObservers(collection.doNext(currentImage, toState));
 	}
+	*/
 
 	/**
 	 * Save a study to the local system
 	 * @param params
 	 */
+	/*
 	public void saveStudy(String params) {
 		collection.saveStudy(params);
 	}
-	
+	*/
+	/*
 	@Override
 	public synchronized boolean hasChanged() {
 		return super.hasChanged();
 	}
+	*/
 
 	@Override
 	public void notifyObservers() {

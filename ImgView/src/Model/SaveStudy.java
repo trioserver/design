@@ -8,7 +8,9 @@
  * Description: Action used to save a study
  */
 
-package design;
+package Model;
+
+import Controller.Actions;
 
 /** Save Study */
 public class SaveStudy extends Actions {

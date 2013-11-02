@@ -10,7 +10,8 @@
  * 				View four tiled images
  */
 
-package design;
+package Controller;
+
 
 /** Change State Action */
 public class ChgState extends Actions {

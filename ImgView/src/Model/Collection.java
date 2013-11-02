@@ -1,14 +1,14 @@
 /**
  * 
  */
-package design;
+package Model;
 
 import java.util.ArrayList;
+
 /** 
  * @author artur
  */
 public class Collection {
-
 	Collection(String studyPath)
 	{
 		

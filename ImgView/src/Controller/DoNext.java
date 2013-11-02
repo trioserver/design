@@ -8,7 +8,8 @@
  * Description: Action used to scroll to the next medical image(s) in a study
  */
 
-package design;
+package Controller;
+
 
 /** Do Next Action */
 public class DoNext extends Actions {
@@ -18,6 +19,7 @@ public class DoNext extends Actions {
 	 * @param params 	Optional parameters
 	 */
 	public void initAction(Object params){
-		_session.doNext();
+	    // casting to an int array might be bad lol
+	    _imageContainer.changeDisplayedImages((int[])params);
 	}
 }

@@ -12,6 +12,8 @@ package design;
 
 import javax.swing.SwingUtilities;
 
+import View.MainView;
+
 /** Main class */
 public class Main {
 

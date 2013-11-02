@@ -8,7 +8,7 @@
  * Description: 
  */
 
-package design;
+package View;
 
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;

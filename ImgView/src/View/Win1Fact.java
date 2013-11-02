@@ -8,11 +8,12 @@
  * Description: 
  */
 
-package design;
+package View;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JComponent;
+
 
 /** One image Window Factory */
 public class Win1Fact implements WindowFactory {
@@ -21,7 +22,7 @@ public class Win1Fact implements WindowFactory {
 	 * 
 	 */
 	Win1Fact() {
-		_oneWins = new design.OneWins();
+		_oneWins = new View.OneWins();
 	}
 	
 	/**
@@ -29,14 +30,14 @@ public class Win1Fact implements WindowFactory {
 	 * @param list
 	 */
 	Win1Fact(ArrayList<BufferedImage> list) {
-		_oneWins = new design.OneWins(list);
+		_oneWins = new View.OneWins(list);
 	}
 	
 	/**
 	 * 
 	 */
 	public void update(ArrayList<BufferedImage> list) {
-		_oneWins = new design.OneWins(list);
+		_oneWins = new View.OneWins(list);
 	}
 	
 	/**  */

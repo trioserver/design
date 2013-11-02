@@ -8,11 +8,12 @@
  * Description: 
  */
 
-package design;
+package View;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JComponent;
+
 
 /** Four image Window Factory */
 public class Win4Fact implements WindowFactory {

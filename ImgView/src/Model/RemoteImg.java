@@ -8,10 +8,11 @@
  * Description: Load a remote image
  */
 
-package design;
+package Model;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 
 /** Remote Image */
 public class RemoteImg implements LoadImg {

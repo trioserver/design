@@ -8,7 +8,7 @@
  * Description: 
  */
 
-package design;
+package View;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -28,6 +28,16 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+
+import Controller.Actions;
+import Controller.ChgState;
+import Controller.DoNext;
+import Controller.DoPrev;
+import Controller.InitStudy;
+import Controller.MainController;
+import Model.SaveStudy;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -58,7 +68,7 @@ public class MainView extends JFrame implements Observer{
 	private WindowFactory _imgWindow;
 
 	/** Main Controller */
-	private MainController _mainController = new design.MainController();
+	private MainController _mainController = new Controller.MainController();
 		
 	/**
 	 * Constructs a MainView

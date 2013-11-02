@@ -1,8 +1,10 @@
-package design;
+package Controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+
+import Model.Session;
 
 
 public class MainController {

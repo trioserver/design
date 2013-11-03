@@ -49,7 +49,7 @@ public class ImageContainer extends Observable {
 	private ArrayList<BufferedImage> _imgContainerCoronal = null;
 	private ArrayList<BufferedImage> _imgContainerAxial = null;
 	
-	private ArrayList<BufferedImage> displayedImages = null;
+	//private ArrayList<BufferedImage> displayedImages = null;
 	
 	/**
 	 * Gets the next medical image(s) in a study
@@ -71,12 +71,12 @@ public class ImageContainer extends Observable {
 	}
 	*/
 	
-	public void changeDisplayedImages(int[] indexes) {
+	public ArrayList<BufferedImage> changeDisplayedImages(ArrayList<Integer> indexes) {
 	    ArrayList<BufferedImage> imagesToReturn = new ArrayList<BufferedImage>();
-	    for(int i = 0; i < indexes.length; ++i) {
-		imagesToReturn.add(_imgContainerStock.get(indexes[i]));
+	    for(int i = 0; i < indexes.size(); ++i) {
+		imagesToReturn.add(_imgContainerStock.get(indexes.get(i)));
 	    }
-	    displayedImages = imagesToReturn;
+	    return imagesToReturn;
 	}
 	
 	private void renderImages() {

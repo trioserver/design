@@ -5,10 +5,54 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import Model.Session;
+import View.MainView;
 
 
 public class MainController {
 
+    private Session _session;
+    private Actions curAction;
+    private MainView _view;
+    
+    public MainController(MainView Ui) {
+	curAction = null;
+    }
+    
+    public void performActionNext() {
+	Actions next = new DoNext(_session.getDisplayState(),
+				_session.getNbrImages(), 
+				_session.getCurrentImage());
+	next.addPreviousAction(curAction);
+	curAction = next;
+	next.addObserver(_view);
+	_session.setCurrentImage(next.initAction());
+    }
+    
+    public void performActionPrev() {
+	
+    }
+    
+    public void undoPreviousAction() {
+	_session.setAll(curAction.undoAction());
+    }
+
+	/**
+	 * Getter of the property <tt>_session</tt>
+	 * @return  Returns the _session.
+	 * @uml.property  name="_session"
+	 */
+	public Session get_session() {
+		return _session;
+	}
+
+	/**
+	 * Setter of the property <tt>_session</tt>
+	 * @param _session  The _session to set.
+	 * @uml.property  name="_session"
+	 */
+	public void set_session(Session _session) {
+		this._session = _session;
+	}
 	/**
 	 * @uml.property  name="_mainView"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="_mainController:design.MainView"
@@ -37,7 +81,9 @@ public class MainController {
 	 * @uml.property name="_actions"
 	 * @uml.associationEnd multiplicity="(0 -1)" ordering="true" aggregation="shared" inverse="mainController:design.Actions"
 	 */
+    	/*
 	private ArrayList _actions;
+	*/
 
 	/** 
 	 * Returns the element at the specified position in this list.
@@ -46,9 +92,11 @@ public class MainController {
 	 * @see java.util.List#get(int)
 	 * @uml.property  name="_actions"
 	 */
+    	/*
 	public ArrayList get_actions() {
 		return _actions;
 	}
+	*/
 
 	/** 
 	 * Returns the element at the specified position in this list.
@@ -194,30 +242,6 @@ public class MainController {
 	 */
 	public void set_actions(ArrayList _actions) {
 		this._actions = _actions;
-	}
-
-	/**
-	 * @uml.property  name="_session"
-	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="composite" inverse="mainController:design.Session"
-	 */
-	private Session _session;
-
-	/**
-	 * Getter of the property <tt>_session</tt>
-	 * @return  Returns the _session.
-	 * @uml.property  name="_session"
-	 */
-	public Session get_session() {
-		return _session;
-	}
-
-	/**
-	 * Setter of the property <tt>_session</tt>
-	 * @param _session  The _session to set.
-	 * @uml.property  name="_session"
-	 */
-	public void set_session(Session _session) {
-		this._session = _session;
 	}
 
 

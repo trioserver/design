@@ -68,7 +68,7 @@ public class MainView extends JFrame implements Observer{
 	private WindowFactory _imgWindow;
 
 	/** Main Controller */
-	private MainController _mainController = new Controller.MainController();
+	private MainController _mainController = new Controller.MainController(this);
 		
 	/**
 	 * Constructs a MainView

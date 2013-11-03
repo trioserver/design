@@ -10,6 +10,7 @@
 
 package Controller;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import Model.ImageContainer;
@@ -23,6 +24,8 @@ public abstract class Actions extends Observable{
 	
 	/** User Interface view */
 	static protected MainView _ui;
+	
+	static protected Actions _previousAction = null;
 	
 	/**
 	 * Start a new Session
@@ -38,15 +41,22 @@ public abstract class Actions extends Observable{
 	 * 
 	 * @param ui
 	 */
-	/*
-	static protected void addUiObserver(MainView ui) {
-		_session.addObserver(ui);
+	public void addUiObserver(MainView ui) {
+		this.addObserver(ui);
 	}
-	*/
+	
+	public void addPreviousAction(Actions _action) {
+	    _previousAction = _action;
+	}
+	public Actions getPreviousAction() {
+	    return _previousAction;
+	}
 	
 	/** 
 	 * Initiates an Action
 	 * @param params	Optional parameters
 	 */
-	public abstract void initAction(Object params);
+	public abstract int initAction();
+	
+	public abstract ArrayList<Integer> undoAction();
 }

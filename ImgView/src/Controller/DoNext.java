@@ -10,16 +10,59 @@
 
 package Controller;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 
 /** Do Next Action */
 public class DoNext extends Actions {
 	
+    	private int displayState;
+    	private int nbrImages;
+    	private int oldCurrentImage;
+    	private int newCurrentImage;
+    	private ArrayList<BufferedImage> imagesToDisplay = null;
+    
 	/**
 	 * Initiates the DoNext Action
 	 * @param params 	Optional parameters
 	 */
-	public void initAction(Object params){
-	    // casting to an int array might be bad lol
-	    _imageContainer.changeDisplayedImages((int[])params);
+    	public DoNext(int _displayState, int _nbrImages, int _currentImage) {
+    	    displayState = _displayState;
+    	    nbrImages = _nbrImages;
+    	    oldCurrentImage = _currentImage;
+    	}
+    	
+	public int initAction() {
+	    ArrayList<Integer> newImageIndexes = new ArrayList<Integer>();
+	    // check that the images to be displayed on next page
+	    // does not exceed the number of images contained
+	    if (oldCurrentImage + displayState > nbrImages) {
+		newCurrentImage = nbrImages - displayState - 1;
+	    } else {
+		newCurrentImage = oldCurrentImage + displayState;
+	    }
+	    for (int i = 0; i < displayState; ++i) {
+		newImageIndexes.add(newCurrentImage + i);
+	    }
+	    
+	    imagesToDisplay = _imageContainer.changeDisplayedImages(newImageIndexes);
+	    setChanged();
+	    notifyObservers(imagesToDisplay);
+	    return newCurrentImage;
+	}
+	
+	public ArrayList<Integer> undoAction() {
+	    ArrayList<Integer> oldImageIndexes = new ArrayList<Integer>();
+	    for (int i = 0; i < displayState; ++i) {
+		oldImageIndexes.add(oldCurrentImage + i);
+	    }
+	    imagesToDisplay = _imageContainer.changeDisplayedImages(oldImageIndexes);
+	    notifyObservers(imagesToDisplay);
+	    ArrayList<Integer> newStateValues = new ArrayList<Integer>();
+	    newStateValues.add(displayState);
+	    newStateValues.add(oldCurrentImage);
+	    newStateValues.add(nbrImages);
+	    return newStateValues;
 	}
 }

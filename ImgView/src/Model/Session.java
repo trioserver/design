@@ -14,6 +14,7 @@
 
 package Model;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 
@@ -21,10 +22,38 @@ import java.util.Observable;
 public class Session extends Observable{
 
 	private int displayState;
-	//private ImageContainer collection;
 	private int currentImage;
 	private int nbrImages;
-	//private String _dirPath;
+	
+	public int getDisplayState() {
+	    return displayState;
+	}
+	
+	public void setDisplayState(int _displayState) {
+	    displayState = _displayState;
+	}
+	
+	public int getCurrentImage() {
+	    return currentImage;
+	}
+	
+	public void setCurrentImage(int _currentImage) {
+	    currentImage = _currentImage;
+	}
+	
+	public int getNbrImages() {
+	    return nbrImages;
+	}
+	
+	public void setNbrImages(int _nbrImages) {
+	    nbrImages = _nbrImages;
+	}
+	
+	public void setAll(ArrayList<Integer> newSet) {
+	    displayState = newSet.get(0);
+	    currentImage = newSet.get(1);
+	    nbrImages = newSet.get(2);
+	}
 	
 	/** 
 	 * Open a new medical image study

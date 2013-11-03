@@ -12,15 +12,62 @@
 
 package Controller;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 
 /** Change State Action */
 public class ChgState extends Actions {
+    
+    private int oldState;
+    private int newState;
+    private int oldCurrentImage;
+    private int newCurrentImage;
+    private int nbrImages;
+    private ArrayList<BufferedImage> imagesToDisplay = null;
+    
+    public ChgState(int _displayState, int _nbrImages, int _currentImage, int _newState) {
+	oldState = _displayState;
+	newState = _newState;
+	nbrImages = _nbrImages;
+	oldCurrentImage = _currentImage;
+    }
+    
+    /**
+     * Initiate the ChgState Action
+     * @param params	Optional parameters
+     */
+	public int initAction() {
+	    ArrayList<Integer> newImageIndexes = new ArrayList<Integer>();
+	    if (oldCurrentImage + newState > nbrImages) {
+		newCurrentImage = nbrImages - newState - 1;
+	    } else {
+		newCurrentImage = oldCurrentImage + newState;
+	    }
+	    for (int i = 0; i < newState; ++i) {
+		newImageIndexes.add(newCurrentImage + i);
+	    }
+	    
+	    imagesToDisplay = _imageContainer.changeDisplayedImages(newImageIndexes);
+	    setChanged();
+	    notifyObservers(imagesToDisplay);
+	    return newCurrentImage;
+	}
 	
-	/**
-	 * Initiate the ChgState Action
-	 * @param params	Optional parameters
-	 */
-	public void initAction(Object params) {
-		Actions._session.changeState((Integer)params);
+	public ArrayList<Integer> undoAction() {
+	    ArrayList<Integer> oldImageIndexes = new ArrayList<Integer>();
+	    for (int i = 0; i < oldState; ++i) {
+		oldImageIndexes.add(oldCurrentImage + i);
+	    }
+	    imagesToDisplay = _imageContainer.changeDisplayedImages(oldImageIndexes);
+	    setChanged();
+	    notifyObservers(imagesToDisplay);
+	    
+	    ArrayList<Integer> newStateValues = new ArrayList<Integer>();
+	    newStateValues.add(oldState);
+	    newStateValues.add(oldCurrentImage);
+	    newStateValues.add(nbrImages);
+	    
+	    return newStateValues;
 	}
 }

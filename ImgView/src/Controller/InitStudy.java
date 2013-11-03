@@ -10,30 +10,43 @@
 
 package Controller;
 
-import Model.Session;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import View.MainView;
 
 /** Initiate Study */
 public class InitStudy extends Actions {
     
+    	private int displayState = 1;
+    	private int currentImage = 0;
+    	private int nbrImages;
+    	private ArrayList<BufferedImage> imagesToDisplay = null;
+    	
+    	
 	/**
 	 * Constructs InitStudy
 	 * @param params
 	 * @param ui		The main view
 	 */
 	public InitStudy(String params, MainView ui) {
-		Actions._session=new Session();
-		Actions.addUiObserver(ui);
-		initAction(params);
+		nbrImages = _imageContainer.changeStudy(params);
+		_ui = ui;
+		_previousAction = null;
 	}
 	
 	/**
 	 * Initiate the Action to change Session
 	 */
-	@Override
-	public void initAction(Object params) {
-		if (params instanceof String) {
-			Actions.changeSession((String)params);
-		}
+	// will be buggy, deal with too few pictures with initstudy
+	public int initAction() {
+	    ArrayList<Integer> newImageIndexes = new ArrayList<Integer>();
+	    for (int i = 0; i < displayState; ++i) {
+		newImageIndexes.add(i);
+	    }
+	    imagesToDisplay = _imageContainer.changeDisplayedImages(newImageIndexes);
+	    setChanged();
+	    notifyObservers(imagesToDisplay);
+	    return nbrImages; // will change later
 	}
 }

@@ -23,7 +23,15 @@ import javax.imageio.ImageIO;
 /** Image Container */
 public class ImageContainer extends Observable {
 	
-    public ImageContainer(String directory) {
+    public ImageContainer() {
+    }
+    
+    public int changeStudy(String directory) {
+	_imgContainerStock = new ArrayList<BufferedImage>();
+	_imgContainerSaggital = new ArrayList<BufferedImage>();
+	_imgContainerCoronal = new ArrayList<BufferedImage>();
+	_imgContainerAxial = new ArrayList<BufferedImage>();
+	
 	File dir = new File(directory);
     	File[] files = dir.listFiles();
 	Arrays.sort(files);
@@ -36,8 +44,7 @@ public class ImageContainer extends Observable {
     	    }
 	}
 	    renderImages();
-	    //_imgContainer = new LocalImg(path);
-	    //_imgContainer=new ArrayList<BufferedImage>();
+	    return files.length;
     }
 	
 	/**  */

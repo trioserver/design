@@ -23,10 +23,6 @@ public class DoNext extends Actions {
     	private int newCurrentImage;
     	private ArrayList<BufferedImage> imagesToDisplay = null;
     
-	/**
-	 * Initiates the DoNext Action
-	 * @param params 	Optional parameters
-	 */
     	public DoNext(int _displayState, int _nbrImages, int _currentImage) {
     	    displayState = _displayState;
     	    nbrImages = _nbrImages;
@@ -58,11 +54,14 @@ public class DoNext extends Actions {
 		oldImageIndexes.add(oldCurrentImage + i);
 	    }
 	    imagesToDisplay = _imageContainer.changeDisplayedImages(oldImageIndexes);
+	    setChanged();
 	    notifyObservers(imagesToDisplay);
+	    
 	    ArrayList<Integer> newStateValues = new ArrayList<Integer>();
 	    newStateValues.add(displayState);
 	    newStateValues.add(oldCurrentImage);
 	    newStateValues.add(nbrImages);
+	    
 	    return newStateValues;
 	}
 }

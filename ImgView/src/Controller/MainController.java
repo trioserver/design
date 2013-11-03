@@ -26,10 +26,41 @@ public class MainController {
 	curAction = next;
 	next.addObserver(_view);
 	_session.setCurrentImage(next.initAction());
+	// put code here to grey out a button and not allow further command
+	// objects to be created
     }
     
     public void performActionPrev() {
-	
+	Actions prev = new DoPrev(_session.getDisplayState(),
+				_session.getNbrImages(), 
+				_session.getCurrentImage());
+	prev.addPreviousAction(curAction);
+	curAction = prev;
+	prev.addObserver(_view);
+	_session.setCurrentImage(prev.initAction());
+    }
+    
+    public void chgState(int newState) {
+	Actions state = new ChgState(_session.getDisplayState(),
+				_session.getNbrImages(), 
+				_session.getCurrentImage(), 
+				newState);
+	state.addPreviousAction(curAction);
+	curAction = state;
+	state.addObserver(_view);
+	_session.setCurrentImage(state.initAction());
+    }
+    
+    public void initStudy(String directory) {
+	Actions init = new InitStudy(directory, _view);
+	init.addPreviousAction(curAction);
+	curAction = init;
+	init.addObserver(_view);
+	ArrayList<Integer> setNewSession = new ArrayList<Integer>();
+	setNewSession.add(1); // display
+	setNewSession.add(0); // current image
+	setNewSession.add(init.initAction());
+	_session.setAll(setNewSession);
     }
     
     public void undoPreviousAction() {

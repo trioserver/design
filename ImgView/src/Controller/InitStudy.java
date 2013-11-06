@@ -13,6 +13,7 @@ package Controller;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import Model.ImageContainer;
 import View.MainView;
 
 /** Initiate Study */
@@ -20,7 +21,7 @@ public class InitStudy extends Actions {
     
     	private int displayState = 1;
     	private int currentImage = 0;
-    	private int nbrImages;
+    	private int nbrImages = -1;
     	private ArrayList<BufferedImage> imagesToDisplay = null;
     	
     	
@@ -30,6 +31,7 @@ public class InitStudy extends Actions {
 	 * @param ui		The main view
 	 */
 	public InitStudy(String params, MainView ui) {
+		Actions._imageContainer = new ImageContainer();
 		nbrImages = _imageContainer.changeStudy(params);
 		_ui = ui;
 		_previousAction = null;
@@ -48,5 +50,10 @@ public class InitStudy extends Actions {
 	    setChanged();
 	    notifyObservers(imagesToDisplay);
 	    return nbrImages; // will change later
+	}
+	
+	public ArrayList<Integer> undoAction() {
+		ArrayList<Integer> noUndoFunctionality = new ArrayList<Integer>();
+		return noUndoFunctionality;
 	}
 }

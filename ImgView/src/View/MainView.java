@@ -75,10 +75,10 @@ public class MainView extends JFrame implements Observer{
 	 */
 	public MainView() {
 		_imgWindow = new Win1Fact();
-		_next = new DoNext();
-		_prev = new DoPrev();
-		_saveStudy = new SaveStudy();
-		_chgState = new ChgState();
+		//_next = new DoNext();
+		//_prev = new DoPrev();
+		//_saveStudy = new SaveStudy();     edited recently
+		//_chgState = new ChgState();
 		_imgContainer = new JPanel();
 		_imgContainer.setLayout(new CardLayout(0, 0));
 		/*ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
@@ -97,7 +97,8 @@ public class MainView extends JFrame implements Observer{
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int returnVal = fileChooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			_init = new InitStudy(fileChooser.getSelectedFile().toString(),this);
+			//_init = new InitStudy(fileChooser.getSelectedFile().toString(),this);
+			_mainController.initStudy(fileChooser.getSelectedFile().toString());
 		}
 		//ArrayList<BufferedImage> list = new ArrayList<BufferedImage>();
 		//try {
@@ -134,7 +135,8 @@ public class MainView extends JFrame implements Observer{
 	 */
 	private void evActionbtnOne(){
 		_imgWindow = new Win1Fact();
-		_chgState.initAction(1);
+		_mainController.chgState(1); // 1 is for one window
+		//_chgState.initAction(1);
 		((JButton) _btnOne).disable();
 		((JButton) _btnFour).enable();
 	}
@@ -159,7 +161,8 @@ public class MainView extends JFrame implements Observer{
 	 */
 	private void evActionbtnFour() {
 		_imgWindow = new Win4Fact();
-		_chgState.initAction(4);
+		_mainController.chgState(4);
+		//_chgState.initAction(4);
 		((JButton) _btnFour).disable();
 		((JButton) _btnOne).enable();
 	}
@@ -181,7 +184,8 @@ public class MainView extends JFrame implements Observer{
 	 * 
 	 */
 	private void evActionbtnPrev() {
-		_prev.initAction(-1);
+		_mainController.performActionPrev();
+		//_prev.initAction(-1);
 	}
 	
 	/**
@@ -201,7 +205,8 @@ public class MainView extends JFrame implements Observer{
 	 * 
 	 */
 	private void evActionbtnNext() {
-		_next.initAction(-1);
+		_mainController.performActionNext();
+		//_next.initAction(-1);
 	}
 	
 	/**
@@ -246,6 +251,7 @@ public class MainView extends JFrame implements Observer{
 	 * Set default action for fileOpen item
 	 * Overriding actionPerformed method
 	 */
+	// this function does not do anything atm, implement this
 	private void evActionFileSave() {
 		((JMenuItem)_fileSave).addActionListener(new ActionListener(){
         	@Override
@@ -254,7 +260,7 @@ public class MainView extends JFrame implements Observer{
         		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         		int returnVal = fileChooser.showOpenDialog(null);
         		if (returnVal == JFileChooser.APPROVE_OPTION) {
-        			_saveStudy.initAction(fileChooser.getSelectedFile().toString());
+        			//_saveStudy.initAction(fileChooser.getSelectedFile().toString());
         		}
         	}
         });

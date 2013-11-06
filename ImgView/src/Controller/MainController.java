@@ -1,9 +1,8 @@
 package Controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 
+import Model.ImageContainer;
 import Model.Session;
 import View.MainView;
 
@@ -16,6 +15,8 @@ public class MainController {
     
     public MainController(MainView Ui) {
 	curAction = null;
+	_view = Ui;
+	
     }
     
     public void performActionNext() {
@@ -49,10 +50,12 @@ public class MainController {
 	curAction = state;
 	state.addObserver(_view);
 	_session.setCurrentImage(state.initAction());
+	_session.setDisplayState(newState);
     }
     
     public void initStudy(String directory) {
 	Actions init = new InitStudy(directory, _view);
+	_session = new Session();
 	init.addPreviousAction(curAction);
 	curAction = init;
 	init.addObserver(_view);
@@ -65,6 +68,10 @@ public class MainController {
     
     public void undoPreviousAction() {
 	_session.setAll(curAction.undoAction());
+    }
+    
+    private void buildAction(Actions action) {
+    	
     }
 
 	/**
@@ -136,9 +143,11 @@ public class MainController {
 	 * @see java.util.List#get(int)
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public Actions get_actions(int i) {
 		return (Actions) _actions.get(i);
 	}
+	*/
 
 	/**
 	 * Returns an iterator over the elements in this list in proper sequence.
@@ -146,9 +155,11 @@ public class MainController {
 	 * @see java.util.List#iterator()
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public Iterator _actionsIterator() {
 		return _actions.iterator();
 	}
+	*/
 
 	/**
 	 * Returns <tt>true</tt> if this list contains no elements.
@@ -156,9 +167,11 @@ public class MainController {
 	 * @see java.util.List#isEmpty()
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public boolean is_actionsEmpty() {
 		return _actions.isEmpty();
 	}
+	*/
 
 	/**
 	 * Returns <tt>true</tt> if this list contains the specified element.
@@ -167,9 +180,11 @@ public class MainController {
 	 * @see java.util.List#contains(Object)
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public boolean contains_actions(Actions actions) {
 		return _actions.contains(actions);
 	}
+	*/
 
 	/**
 	 * Returns <tt>true</tt> if this list contains all of the elements of the specified collection.
@@ -178,9 +193,11 @@ public class MainController {
 	 * @see java.util.List#containsAll(Collection)
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public boolean containsAll_actions(Collection _actions) {
 		return this._actions.containsAll(_actions);
 	}
+	*/
 
 	/**
 	 * Returns the number of elements in this list.
@@ -188,9 +205,11 @@ public class MainController {
 	 * @see java.util.List#size()
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public int _actionsSize() {
 		return _actions.size();
 	}
+	*/
 
 	/**
 	 * Returns an array containing all of the elements in this list in proper sequence.
@@ -198,9 +217,11 @@ public class MainController {
 	 * @see java.util.List#toArray()
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public Actions[] _actionsToArray() {
 		return (Actions[]) _actions.toArray(new Actions[_actions.size()]);
 	}
+	*/
 
 	/**
 	 * Returns an array containing all of the elements in this list in proper sequence; the runtime type of the returned array is that of the specified array.
@@ -209,9 +230,11 @@ public class MainController {
 	 * @see java.util.List#toArray(Object[])
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public Actions[] _actionsToArray(Actions[] _actions) {
 		return (Actions[]) this._actions.toArray(_actions);
 	}
+	*/
 
 	/**
 	 * Inserts the specified element at the specified position in this list (optional operation)
@@ -220,9 +243,11 @@ public class MainController {
 	 * @see java.util.List#add(int,Object)
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public void add_actions(int index, Actions actions) {
 		_actions.add(index, actions);
 	}
+	*/
 
 	/**
 	 * Appends the specified element to the end of this list (optional operation).
@@ -231,9 +256,11 @@ public class MainController {
 	 * @see java.util.List#add(Object)
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public boolean add_actions(Actions actions) {
 		return _actions.add(actions);
 	}
+	*/
 
 	/**
 	 * Removes the element at the specified position in this list (optional operation).
@@ -242,9 +269,11 @@ public class MainController {
 	 * @see java.util.List#remove(int)
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public Object remove_actions(int index) {
 		return _actions.remove(index);
 	}
+	*/
 
 	/**
 	 * Removes the first occurrence in this list of the specified element  (optional operation).
@@ -253,27 +282,33 @@ public class MainController {
 	 * @see java.util.List#remove(Object)
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public boolean remove_actions(Actions actions) {
 		return _actions.remove(actions);
 	}
+	*/
 
 	/**
 	 * Removes all of the elements from this list (optional operation).
 	 * @see java.util.List#clear()
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public void clear_actions() {
 		_actions.clear();
 	}
+	*/
 
 	/** 
 	 * Setter of the property <tt>_actions</tt>
 	 * @param _actions  the _actions to set.
 	 * @uml.property  name="_actions"
 	 */
+	/*
 	public void set_actions(ArrayList _actions) {
 		this._actions = _actions;
 	}
+	*/
 
 
 

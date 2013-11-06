@@ -13,6 +13,8 @@ package Controller;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import Model.ImageContainer;
+
 
 /** Do Next Action */
 public class DoNext extends Actions {

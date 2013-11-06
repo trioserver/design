@@ -15,6 +15,8 @@ package Controller;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import Model.ImageContainer;
+
 
 /** Change State Action */
 public class ChgState extends Actions {

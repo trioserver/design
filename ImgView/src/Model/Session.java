@@ -26,7 +26,9 @@ public class Session extends Observable{
 	private int nbrImages;
 	
 	public Session() {
-	    
+	    displayState = 0;
+	    currentImage = 0;
+	    nbrImages = 0;
 	}
 	
 	public int getDisplayState() {

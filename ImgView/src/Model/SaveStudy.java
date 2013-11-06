@@ -10,6 +10,8 @@
 
 package Model;
 
+import java.util.ArrayList;
+
 import Controller.Actions;
 
 /** Save Study */
@@ -20,7 +22,12 @@ public class SaveStudy extends Actions {
 	 * @param params	optional parameters
 	 */
 	@Override
-	public void initAction(Object params) {
-		if (params instanceof String) Actions._session.saveStudy((String) params);
+	public int initAction() {
+		//if (params instanceof String) Actions._session.saveStudy((String) params);
+		return 0;
+	}
+	
+	public ArrayList<Integer> undoAction() {
+		return new ArrayList<Integer>();
 	}
 }

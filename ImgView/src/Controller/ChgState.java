@@ -24,7 +24,6 @@ public class ChgState extends Actions {
     private int oldState;
     private int newState;
     private int oldCurrentImage;
-    private int newCurrentImage;
     private int nbrImages;
     private ArrayList<BufferedImage> imagesToDisplay = null;
     
@@ -41,19 +40,15 @@ public class ChgState extends Actions {
      */
 	public int initAction() {
 	    ArrayList<Integer> newImageIndexes = new ArrayList<Integer>();
-	    if (oldCurrentImage + newState > nbrImages) {
-		newCurrentImage = nbrImages - newState - 1;
-	    } else {
-		newCurrentImage = oldCurrentImage + newState;
-	    }
-	    for (int i = 0; i < newState; ++i) {
-		newImageIndexes.add(newCurrentImage + i);
+	    int overload = nbrImages - oldCurrentImage;
+	    for (int i = 0; i < overload; ++i) {
+		newImageIndexes.add(oldCurrentImage + i);
 	    }
 	    
 	    imagesToDisplay = _imageContainer.changeDisplayedImages(newImageIndexes);
 	    setChanged();
 	    notifyObservers(imagesToDisplay);
-	    return newCurrentImage;
+	    return oldCurrentImage;
 	}
 	
 	public ArrayList<Integer> undoAction() {

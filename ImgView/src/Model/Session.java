@@ -24,11 +24,13 @@ public class Session extends Observable{
 	private int displayState;
 	private int currentImage;
 	private int nbrImages;
+	private String type;
 	
 	public Session() {
 	    displayState = 0;
 	    currentImage = 0;
 	    nbrImages = 0;
+	    type = "xy";
 	}
 	
 	public int getDisplayState() {
@@ -53,6 +55,14 @@ public class Session extends Observable{
 	
 	public void setNbrImages(int _nbrImages) {
 	    nbrImages = _nbrImages;
+	}
+	
+	public String getType() {
+	    return type;
+	}
+	
+	public void setType(String _type) {
+	    type = _type;
 	}
 	
 	public void setAll(ArrayList<Integer> newSet) {

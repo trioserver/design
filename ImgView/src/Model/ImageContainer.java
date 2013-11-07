@@ -30,7 +30,7 @@ public class ImageContainer extends Observable {
 	_imgContainerStock = new ArrayList<BufferedImage>();
 	_imgContainer1 = new ArrayList<BufferedImage>();
 	_imgContainer2 = new ArrayList<BufferedImage>();
-	_imgContainerAxial = new ArrayList<BufferedImage>();
+	_imgContainerInUse = _imgContainerStock;
 	
 	File dir = new File(directory);
     	File[] files = dir.listFiles();
@@ -38,6 +38,8 @@ public class ImageContainer extends Observable {
 	for(File file : files) {
 	    // add exception code here later!! important
 	    try {
+		if (!file.isDirectory()) {
+		}
     	    	_imgContainerStock.add(ImageIO.read(file));
     	    } catch (IOException e) {
     		e.printStackTrace();
@@ -56,7 +58,8 @@ public class ImageContainer extends Observable {
 	private ArrayList<BufferedImage> _imgContainerStock = null;
 	private ArrayList<BufferedImage> _imgContainer1 = null;
 	private ArrayList<BufferedImage> _imgContainer2 = null;
-	private ArrayList<BufferedImage> _imgContainerAxial = null;
+	private ArrayList<BufferedImage> _imgContainerInUse = null;
+	
 	
 	private int[][][] cube;
 	
@@ -85,9 +88,25 @@ public class ImageContainer extends Observable {
 	public ArrayList<BufferedImage> changeDisplayedImages(ArrayList<Integer> indexes) {
 	    ArrayList<BufferedImage> imagesToReturn = new ArrayList<BufferedImage>();
 	    for(int i = 0; i < indexes.size(); ++i) {
-		imagesToReturn.add(_imgContainer2.get(indexes.get(i))); // here
+		imagesToReturn.add(_imgContainerInUse.get(indexes.get(i))); // here
 	    }
 	    return imagesToReturn;
+	}
+	
+	public void changeTypeImages(String type) {
+	    if (type == "xy" ) {
+		_imgContainerInUse = _imgContainerStock;
+	    }
+	    if (type == "xz") {
+		_imgContainerInUse = _imgContainer1;
+	    }
+	    if (type == "yz") {
+		_imgContainerInUse = _imgContainer2;
+	    }
+	}
+	
+	public int getNumberImages() {
+	    return _imgContainerInUse.size();
 	}
 	
 	private void renderImages() {
@@ -100,8 +119,9 @@ public class ImageContainer extends Observable {
 		    }
 		}
 	    }
-	    //createView1();
+	    createView1();
 	    createView2();
+	    cube = null;
 	}
 	
 	private void createView1() {

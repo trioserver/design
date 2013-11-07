@@ -53,6 +53,17 @@ public class MainController {
 	_session.setDisplayState(newState);
     }
     
+    public void chgTypeState(String typeString) {
+	Actions type = new ChgTypeState(_session.getDisplayState(), _session.getCurrentImage(), 0, _session.getType(), typeString);
+	
+	type.addPreviousAction(curAction);
+	curAction = type;
+	type.addObserver(_view);
+	type.initAction();
+	_session.setCurrentImage(0);
+	_session.setNbrImages(type.initAction());
+    }
+    
     public void initStudy(String directory) {
 	Actions init = new InitStudy(directory, _view);
 	_session = new Session();
@@ -68,10 +79,7 @@ public class MainController {
     
     public void undoPreviousAction() {
 	_session.setAll(curAction.undoAction());
-    }
-    
-    private void buildAction(Actions action) {
-    	
+	curAction = curAction.getPreviousAction();
     }
 
 	/**

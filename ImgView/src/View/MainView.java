@@ -138,7 +138,7 @@ public class MainView extends JFrame implements Observer{
 	 * 
 	 */
 	private void evActionbtnUndo(){
-	
+	    _mainController.undoPreviousAction();
 	}
 	
 	/**
@@ -165,6 +165,7 @@ public class MainView extends JFrame implements Observer{
 		//_chgState.initAction(1);
 		//((JButton) _btnOne).setEnabled(false);
 		//((JButton) _btnFour).setEnabled(true);
+	    _mainController.chgTypeState("xy");
 		((JButton) _btnYZ).setEnabled(true);
 		((JButton) _btnXZ).setEnabled(true);
 		((JButton) _btnXY).setEnabled(false);
@@ -196,6 +197,7 @@ public class MainView extends JFrame implements Observer{
 		//_chgState.initAction(1);
 		//((JButton) _btnOne).setEnabled(false);
 		//((JButton) _btnFour).setEnabled(true);
+	    _mainController.chgTypeState("xz"); // 2 is default value for the change
 		((JButton) _btnXY).setEnabled(true);
 		((JButton) _btnYZ).setEnabled(true);
 		((JButton) _btnXZ).setEnabled(false);
@@ -226,6 +228,7 @@ public class MainView extends JFrame implements Observer{
 		//_chgState.initAction(1);
 		//((JButton) _btnOne).setEnabled(false);
 		//((JButton) _btnFour).setEnabled(true);
+	    _mainController.chgTypeState("yz"); // 3 is for the yz value
 		((JButton) _btnXY).setEnabled(true);
 		((JButton) _btnXZ).setEnabled(true);
 		((JButton) _btnYZ).setEnabled(false);

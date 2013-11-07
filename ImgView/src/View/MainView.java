@@ -53,6 +53,7 @@ public class MainView extends JFrame implements Observer{
 	private JComponent _fileOpen;
 	private JComponent _fileSave;
 	private JComponent _fileExit;
+	private JComponent _btnUndo;
 	private JComponent _btnPrev;
 	private JComponent _btnNext;
 	private JComponent _btnOne;
@@ -119,6 +120,28 @@ public class MainView extends JFrame implements Observer{
 	}
 	
 	/**
+	 * Initiate the Undo button
+	 */
+	private void initbtnUndo(){
+		_btnUndo = new JButton("Undo");
+		((JButton)_btnUndo).setVerticalAlignment(SwingConstants.BOTTOM);
+		((JButton)_btnUndo).setHorizontalAlignment(SwingConstants.LEFT);
+		((JButton)_btnUndo).addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    	 evActionbtnUndo();
+	    	}
+		});
+	}
+	
+	/** 
+	 * 
+	 */
+	private void evActionbtnUndo(){
+	
+	}
+	
+	/**
 	 * Initiate the XY reconstruction 
 	 */
 	private void initbtnXY(){
@@ -142,6 +165,8 @@ public class MainView extends JFrame implements Observer{
 		//_chgState.initAction(1);
 		//((JButton) _btnOne).setEnabled(false);
 		//((JButton) _btnFour).setEnabled(true);
+		((JButton) _btnYZ).setEnabled(true);
+		((JButton) _btnXZ).setEnabled(true);
 		((JButton) _btnXY).setEnabled(false);
 		((JButton) _btnOne).setEnabled(true);
 		((JButton) _btnFour).setEnabled(true);
@@ -430,8 +455,13 @@ public class MainView extends JFrame implements Observer{
         file.add(_fileExit);
         menubar.add(file);
         setJMenuBar(menubar);
+        ///////////////////////////////Undo Button ////////////////////////////////////////////////////
+        JPanel panel1=new JPanel();
+        getContentPane().add(panel1, BorderLayout.NORTH);
+        initbtnUndo();
+        panel1.add(_btnUndo);
         
-        ///////////////////////////////Next, Prev, Image Container/////////////////////////////////////:
+        ///////////////////////////////Next, Prev, Image Container/////////////////////////////////////
         
         //Previous
         JPanel panel = new JPanel();

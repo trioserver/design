@@ -13,33 +13,49 @@ package Model;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
-
-import javax.imageio.ImageIO;
 
 /** Local Image */
 public class LocalImg extends BufferedImage {
 	
-	public LocalImg(ColorModel cm, WritableRaster raster,
-			boolean isRasterPremultiplied, 
-			Hashtable<?, ?> properties) {
+    	private int[][] pixels2DArray;
+    	
+    	private int rowSize;
+    	private int colSize;
+    	
+	public LocalImg(ColorModel cm, WritableRaster raster, boolean isRasterPremultiplied, Hashtable<?, ?> properties) {
 	    super(cm, raster, isRasterPremultiplied, properties);
+	    rowSize = this.getWidth();
+	    colSize = this.getHeight();
+	    pixels2DArray = new int[rowSize][colSize];
+	    
+	    for (int _row = 0; _row < colSize; ++_row) {
+		for (int _col = 0; _col < rowSize; ++_col) {
+		    pixels2DArray[_row][_col] = this.getRGB(_col, _row);
+		}
+	    }
 	}
 
 	// actual return type should be that of array of pixels
 	// check if we are going from top to bottom or bottom to top
-	public void getRow(int row) {
-	    
+	public void getRow(int _col) {
+	    int[] row = new int[rowSize];
+	    for (int pixel = 0; pixel < rowSize; ++pixel) {
+		row[pixel] = pixels2DArray[pixel][_col];
+	    }
 	}
 	
 	// actual return type should be that of array of pixels
 	// check if we are going from top to bottom or bottom to top	
-	public void getCol(int col) {
-	    
+	public void getCol(int _row) {
+	    int[] col = new int[colSize];
+	    for (int pixel = 0; pixel < colSize; ++pixel) {
+		col[pixel] = pixels2DArray[_row][pixel];
+	    }
+	}
+	
+	public int getRowCol(int _row, int _col) {
+	    return pixels2DArray[_row][_col];
 	}
 	
 	/** ArrayList of paths for images */

@@ -17,9 +17,12 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -28,7 +31,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 
 import Controller.Actions;
 import Controller.ChgState;
@@ -62,6 +64,7 @@ public class MainView extends JFrame implements Observer{
 	private JComponent _btnXZ;
 	private JComponent _btnYZ;
 	private JComponent _imgContainer;
+	private JComboBox _study;
 	private Actions _next;
 	private Actions _prev;
 	private Actions _init;
@@ -118,7 +121,20 @@ public class MainView extends JFrame implements Observer{
 		//	e.printStackTrace();
 		//}
 	}
-	
+	private void initStudyBox(){
+		_study = new JComboBox();
+		_study.addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    	 evActionStudyBox();
+	    	}
+		});
+	}
+	private void evActionStudyBox()
+	{
+		String s =(String) _study.getSelectedItem();
+		initStudy(s);
+	}
 	/**
 	 * Initiate the Undo button
 	 */
@@ -425,6 +441,12 @@ public class MainView extends JFrame implements Observer{
 			//getContentPane().add(_imgContainer, BorderLayout.CENTER);
 			//repaint();
 		}
+		if (arg1 instanceof String[])
+		{
+			_study = new JComboBox((String[])arg1);
+			validate();
+			repaint();
+		}
 	}
 	
 	/**
@@ -461,8 +483,11 @@ public class MainView extends JFrame implements Observer{
         ///////////////////////////////Undo Button ////////////////////////////////////////////////////
         JPanel panel1=new JPanel();
         getContentPane().add(panel1, BorderLayout.NORTH);
+        initStudyBox();
+        panel1.add(_study);
         initbtnUndo();
         panel1.add(_btnUndo);
+        
         
         ///////////////////////////////Next, Prev, Image Container/////////////////////////////////////
         

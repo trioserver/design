@@ -35,6 +35,7 @@ public class ImageContainer extends Observable {
 	File dir = new File(directory);
     	File[] files = dir.listFiles();
     	directoriesToPresent = new ArrayList<String>();
+    	directoriesToPresent.add(dir.toString());
 	Arrays.sort(files);
 	for(File file : files) {
 	    // add exception code here later!! important
@@ -49,9 +50,9 @@ public class ImageContainer extends Observable {
     	    }
 	}
 	
-		cube = new int[files.length][_imgContainerStock.get(0).getWidth()][_imgContainerStock.get(0).getHeight()];
+		cube = new int[files.length - directoriesToPresent.size() + 1][_imgContainerStock.get(0).getWidth()][_imgContainerStock.get(0).getHeight()];
 	    renderImages();
-	    return files.length;
+	    return files.length - directoriesToPresent.size() + 1;
     }
 	
 	/**  */

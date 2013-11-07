@@ -123,6 +123,7 @@ public class MainView extends JFrame implements Observer{
 	}
 	private void initStudyBox(){
 		_study = new JComboBox();
+		_study.addItem("");
 		_study.addActionListener(new ActionListener(){
 	    	@Override
 	    	public void actionPerformed(ActionEvent arg0){
@@ -133,7 +134,13 @@ public class MainView extends JFrame implements Observer{
 	private void evActionStudyBox()
 	{
 		String s =(String) _study.getSelectedItem();
-		initStudy(s);
+		try {
+		    if (s != "") {
+			initStudy(s);
+		    }
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
 	}
 	/**
 	 * Initiate the Undo button
@@ -443,7 +450,10 @@ public class MainView extends JFrame implements Observer{
 		}
 		if (arg1 instanceof String[])
 		{
-			_study = new JComboBox((String[])arg1);
+		    String[] temp = (String[])arg1;
+		    for (int i = 0; i < temp.length; ++i) {
+			_study.addItem(temp[i]);
+		    }
 			validate();
 			repaint();
 		}

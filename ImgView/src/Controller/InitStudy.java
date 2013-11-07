@@ -49,6 +49,8 @@ public class InitStudy extends Actions {
 	    imagesToDisplay = _imageContainer.changeDisplayedImages(newImageIndexes);
 	    setChanged();
 	    notifyObservers(imagesToDisplay);
+	    setChanged();
+	    notifyObservers(_imageContainer.getDirectories());
 	    return nbrImages; // will change later
 	}
 	

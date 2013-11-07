@@ -34,13 +34,16 @@ public class ImageContainer extends Observable {
 	
 	File dir = new File(directory);
     	File[] files = dir.listFiles();
+    	directoriesToPresent = new ArrayList<String>();
 	Arrays.sort(files);
 	for(File file : files) {
 	    // add exception code here later!! important
 	    try {
-		if (!file.isDirectory()) {
-		}
+		if (file.isFile()) {
     	    	_imgContainerStock.add(ImageIO.read(file));
+		} else if (file.isDirectory()) {
+		    directoriesToPresent.add(file.toString());
+		}
     	    } catch (IOException e) {
     		e.printStackTrace();
     	    }
@@ -59,6 +62,7 @@ public class ImageContainer extends Observable {
 	private ArrayList<BufferedImage> _imgContainer1 = null;
 	private ArrayList<BufferedImage> _imgContainer2 = null;
 	private ArrayList<BufferedImage> _imgContainerInUse = null;
+	ArrayList<String> directoriesToPresent = new ArrayList<String>();
 	
 	
 	private int[][][] cube;
@@ -84,6 +88,13 @@ public class ImageContainer extends Observable {
 		return _imgContainer;
 	}
 	*/
+	public String[] getDirectories() {
+	    String[] directories = new String[directoriesToPresent.size()];
+	    for (int i = 0; i < directoriesToPresent.size(); ++i) {
+		directories[i] = directoriesToPresent.get(i);
+	    }
+	    return directories;
+	}
 	
 	public ArrayList<BufferedImage> changeDisplayedImages(ArrayList<Integer> indexes) {
 	    ArrayList<BufferedImage> imagesToReturn = new ArrayList<BufferedImage>();

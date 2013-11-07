@@ -16,8 +16,8 @@ public class MainController {
     public MainController(MainView Ui) {
 	curAction = null;
 	_view = Ui;
-	
     }
+    
     
     public void performActionNext() {
 	Actions next = new DoNext(_session.getDisplayState(),

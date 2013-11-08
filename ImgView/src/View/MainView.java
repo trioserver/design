@@ -57,6 +57,9 @@ public class MainView extends JFrame implements Observer{
 	private JComponent _btnNext;
 	private JComponent _btnOne;
 	private JComponent _btnFour;
+	private JComponent _btnXY;
+	private JComponent _btnXZ;
+	private JComponent _btnYZ;
 	private JComponent _imgContainer;
 	private Actions _next;
 	private Actions _prev;
@@ -116,6 +119,95 @@ public class MainView extends JFrame implements Observer{
 	}
 	
 	/**
+	 * Initiate the XY reconstruction 
+	 */
+	private void initbtnXY(){
+		_btnXY = new JButton("XY");
+		((JButton)_btnXY).setVerticalAlignment(SwingConstants.BOTTOM);
+		((JButton)_btnXY).setHorizontalAlignment(SwingConstants.RIGHT);
+		((JButton)_btnXY).addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    	 evActionbtnXY();
+	    	}
+		});
+	}
+	
+	/** 
+	 * 
+	 */
+	private void evActionbtnXY(){
+		//_imgWindow = new Win1Fact();
+		//_mainController.chgState(1); // 1 is for one window
+		//_chgState.initAction(1);
+		//((JButton) _btnOne).setEnabled(false);
+		//((JButton) _btnFour).setEnabled(true);
+		((JButton) _btnXY).setEnabled(false);
+		((JButton) _btnOne).setEnabled(true);
+		((JButton) _btnFour).setEnabled(true);
+		
+	}
+	/**
+	 * Initiate the XY reconstruction 
+	 */
+	private void initbtnXZ(){
+		_btnXZ = new JButton("XZ");
+		((JButton)_btnXZ).setVerticalAlignment(SwingConstants.BOTTOM);
+		((JButton)_btnXZ).setHorizontalAlignment(SwingConstants.RIGHT);
+		((JButton)_btnXZ).addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    	 evActionbtnXZ();
+	    	}
+		});
+	}
+	
+	/** 
+	 * 
+	 */
+	private void evActionbtnXZ(){
+		//_imgWindow = new Win1Fact();
+		//_mainController.chgState(1); // 1 is for one window
+		//_chgState.initAction(1);
+		//((JButton) _btnOne).setEnabled(false);
+		//((JButton) _btnFour).setEnabled(true);
+		((JButton) _btnXY).setEnabled(true);
+		((JButton) _btnYZ).setEnabled(true);
+		((JButton) _btnXZ).setEnabled(false);
+		((JButton) _btnOne).setEnabled(false);
+		((JButton) _btnFour).setEnabled(false);
+	}
+	/**
+	 * Initiate the XY reconstruction 
+	 */
+	private void initbtnYZ(){
+		_btnYZ = new JButton("YZ");
+		((JButton)_btnYZ).setVerticalAlignment(SwingConstants.BOTTOM);
+		((JButton)_btnYZ).setHorizontalAlignment(SwingConstants.RIGHT);
+		((JButton)_btnYZ).addActionListener(new ActionListener(){
+	    	@Override
+	    	public void actionPerformed(ActionEvent arg0){
+	    	 evActionbtnYZ();
+	    	}
+		});
+	}
+	
+	/** 
+	 * 
+	 */
+	private void evActionbtnYZ(){
+		//_imgWindow = new Win1Fact();
+		//_mainController.chgState(1); // 1 is for one window
+		//_chgState.initAction(1);
+		//((JButton) _btnOne).setEnabled(false);
+		//((JButton) _btnFour).setEnabled(true);
+		((JButton) _btnXY).setEnabled(true);
+		((JButton) _btnXZ).setEnabled(true);
+		((JButton) _btnYZ).setEnabled(false);
+		((JButton) _btnOne).setEnabled(false);
+		((JButton) _btnFour).setEnabled(false);
+	}
+	/**
 	 * Initiate the OneState button 
 	 */
 	private void initbtnOne(){
@@ -137,8 +229,8 @@ public class MainView extends JFrame implements Observer{
 		_imgWindow = new Win1Fact();
 		_mainController.chgState(1); // 1 is for one window
 		//_chgState.initAction(1);
-		((JButton) _btnOne).disable();
-		((JButton) _btnFour).enable();
+		((JButton) _btnOne).setEnabled(false);
+		((JButton) _btnFour).setEnabled(true);
 	}
 	
 	/**
@@ -163,8 +255,8 @@ public class MainView extends JFrame implements Observer{
 		_imgWindow = new Win4Fact();
 		_mainController.chgState(4);
 		//_chgState.initAction(4);
-		((JButton) _btnFour).disable();
-		((JButton) _btnOne).enable();
+		((JButton) _btnFour).setEnabled(false);
+		((JButton) _btnOne).setEnabled(true);
 	}
 	
 	/**
@@ -396,8 +488,14 @@ public class MainView extends JFrame implements Observer{
 		
 		initbtnOne();
 		initbtnFour();
+		initbtnXY();
+		initbtnXZ();
+		initbtnYZ();
 		panel_3.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		panel_3.add(_btnOne);
 		panel_3.add(_btnFour);
+		panel_3.add(_btnXY);
+		panel_3.add(_btnXZ);
+		panel_3.add(_btnYZ);
 	}
 }

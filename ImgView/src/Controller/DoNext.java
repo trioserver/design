@@ -33,14 +33,23 @@ public class DoNext extends Actions {
     	
 	public int initAction() {
 	    ArrayList<Integer> newImageIndexes = new ArrayList<Integer>();
+	    int overload = displayState;
 	    // check that the images to be displayed on next page
 	    // does not exceed the number of images contained
-	    if (oldCurrentImage + displayState > nbrImages) {
-		newCurrentImage = nbrImages - displayState - 1;
-	    } else {
+	    if (oldCurrentImage + displayState >= nbrImages) {
+		return oldCurrentImage;
+	    }
+	    newCurrentImage = oldCurrentImage + displayState;
+	    if (oldCurrentImage + displayState > nbrImages - displayState) {
+		//newCurrentImage = nbrImages - displayState - 1;
+		overload = nbrImages - newCurrentImage;
+	    } 
+	    /*
+	    else {
 		newCurrentImage = oldCurrentImage + displayState;
 	    }
-	    for (int i = 0; i < displayState; ++i) {
+	    */
+	    for (int i = 0; i < overload; ++i) {
 		newImageIndexes.add(newCurrentImage + i);
 	    }
 	    
